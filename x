@@ -198,7 +198,7 @@ switch ( $argv[1] )
                         "port":            null,
                         "username":        "",
                         "password":        "",
-                        "encryption_type": "ssl"
+                        "encryption_type": "SMTPS|STARTTLS"
                     }
                 }
                 EOD
