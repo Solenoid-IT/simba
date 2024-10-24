@@ -8,11 +8,14 @@ namespace App\Services;
 
 use \Solenoid\Core\Service;
 
-use \Solenoid\Core\App\WebApp;
+use \Solenoid\Core\App\App;
+use \Solenoid\Core\Credentials;
+use \Solenoid\Core\MVC\View;
 
 use \Solenoid\KeyGen\Generator;
 use \Solenoid\KeyGen\Token;
 use \Solenoid\MySQL\DateTime;
+use \Solenoid\HTTP\Request;
 use \Solenoid\HTTP\Response;
 use \Solenoid\HTTP\Status;
 use \Solenoid\SMTP\Mail;
@@ -98,11 +101,6 @@ class Authorization extends Service
     public static function send (string $token, string $receiver, string $type, ?string $ip = null, ?string $ua = null)
     {
         // (Getting the value)
-        $app = WebApp::fetch();
-
-
-
-        // (Getting the value)
         $connection = SMTPConnectionsStore::fetch()->connections['service'];
 
 
@@ -123,7 +121,7 @@ class Authorization extends Service
         // (Creating a Mail)
         $mail = new Mail
         (
-            new MailBox( $app->fetch_credentials()['smtp']['profiles']['service']['username'], $app->name ),
+            new MailBox( Credentials::fetch('/smtp/data.json')['service']['username'], App::$name ),
 
             [
                 new MailBox( $receiver )
@@ -133,19 +131,19 @@ class Authorization extends Service
             [],
             [],
 
-            $app->name . ' - Authorization Required',
+            App::$name . ' - Authorization Required',
             new MailBody
             (
                 '',
 
-                $app->blade->build
+                View::build
                 (
                     'components/mail/authorization.blade.php',
                     [
-                        'app_name'     => $app->name,
+                        'app_name'     => App::$name,
                         'type'         => $type,
                         'client'       => $response->body,
-                        'endpoint_url' => $app->request->url->fetch_base() . "/admin/authorization/$token"
+                        'endpoint_url' => Request::fetch()->url->fetch_base() . "/admin/authorization/$token"
                     ]
                 )
             )
