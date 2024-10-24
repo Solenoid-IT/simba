@@ -21,11 +21,11 @@ This software is designed for <a href="https://releases.ubuntu.com/22.04/ubuntu-
 You can execute a specific task from bootstrap.php file (<b>CLI</b> context)
 <br>
 
-Syntax: `php bootstrap.php { task-id } { method } ...{ args }`
+Syntax: `php x task { task-id } { method } ...{ args }`
 
 <br>
 
-Example: `php private/bootstrap.php OnDemand/Test run John Doe`
+Example: `php x task OnDemand/Test print`
 <br><br><br>
 
 
