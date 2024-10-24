@@ -1,0 +1,277 @@
+:root
+{
+    --company-color: #0d6efd;
+}
+
+
+
+.page-main
+{
+    background-color: #ffffff;
+}
+
+.close
+{
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    border: none;
+    border-radius: 4px;
+}
+
+.close:hover
+{
+    background-color: transparent !important;
+}
+
+.country-flag
+{
+    height: 30px;
+}
+
+.kv-table
+{
+    width: 100%;
+    display: table;
+}
+
+.kv-table th
+{
+    text-align: left;
+}
+
+.kv-table td
+{
+    text-align: right;
+}
+
+.kv-table th,
+.kv-table td
+{
+    padding: 2px 6px;
+}
+
+
+
+.nav .sb-nav-link-icon
+{
+    width: 20px;
+}
+
+
+
+.modal-dialog
+{
+    overflow: auto !important;
+}
+
+
+
+.table-row-controls
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn .btn-label
+{
+    display: none;
+}
+
+.tag-value
+{
+    padding: 4px 12px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b1b1b1;
+    background-color: #bfbfbf;
+}
+
+.color-sample
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+
+
+.profile-image
+{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    display: table;
+    border-radius: 50%;
+    background-color: #4c4c4c;
+}
+
+
+.remove-checkbox
+{
+    position: absolute;
+    margin: 10px;
+    margin-left: 10px;
+    right: 0;
+    top: 20px;
+    accent-color: #dc3545;
+}
+
+
+
+.input-group-append .btn:not(:last-child)
+{
+    border-radius: 0 !important;
+}
+
+.input-group-append .btn:last-child
+{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+
+
+.dropdown-item
+{
+    cursor: pointer;
+}
+
+
+
+.modal .swg.swg-form
+{
+    padding: 10px 0;
+    border-top: 1px solid #d0d0d0;
+}
+
+
+
+
+
+
+.input-group-append
+{
+    font-size: 0 !important;
+}
+
+
+
+
+
+
+.import-datetime-box
+{
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.import-datetime-value
+{
+    font-weight: 800;
+}
+
+
+
+
+
+
+.theme-dark .modal-title
+{
+    color: #ffffff;
+}
+
+.theme-dark .modal-header
+{
+    border-bottom: 1px solid #4e5357;
+}
+
+.theme-dark .modal-content
+{
+    background-color: #242424;
+}
+
+.modal.theme-dark .swg.swg-form
+{
+    border-top: 1px solid #4e5357 !important;
+}
+
+.theme-dark .input
+{
+    color: #ffffff;
+    background-color: #242424;
+}
+
+.theme-dark .form-control
+{
+    border: 1px solid #4e5357;
+}
+
+.theme-dark .form-control:focus
+{
+    box-shadow: 0 0 0 0.25rem #59606444;
+}
+
+.theme-dark .form-floating > label
+{
+    color: #ffffff;
+}
+
+.theme-dark .close,
+.theme-dark .close:hover
+{
+    opacity: 1;
+    color: #ffffff;
+    background-color: #db0000 !important;
+    text-shadow: none;
+}
+
+.theme-dark .close > span
+{
+    position: relative;
+    top: -2px;
+}
+
+
+
+
+
+
+#layoutSidenav #layoutSidenav_content
+{
+    background-color: #ffffff;
+}
+
+
+
+.sb-topnav .btn > svg
+{
+    position: relative;
+    top: 2px;
+}
+
+.sidebar-icon
+{
+    width: 20px;
+    margin-right: 0.5rem;
+}
+
+#sidenavAccordion .nav
+{
+    width: 225px;
+    position: sticky;
+    top: 0;
+}
+
+
+
+.btn
+{
+    --bs-btn-padding-x: 10px;
+    --bs-btn-padding-y: 4px;
+}

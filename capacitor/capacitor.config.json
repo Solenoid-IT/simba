@@ -1,0 +1,18 @@
+{
+  "appId": "kb.solenoid.it",
+  "appName": "Simba",
+  "bundledWebRuntime": false,
+  "webDir": "./build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "server": {
+    "hostname": "mobile-app.kb.solenoid.it",
+    "allowNavigation": [
+      "kb.solenoid.it",
+      "*.kb.solenoid.it"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+CREATE OR REPLACE VIEW `view::document::all` AS
+SELECT
+    document_table.*,
+
+    user_table.`tenant` AS `user.tenant`,
+    user_table.`name` AS `user.name`
+FROM
+    `document` document_table
+        INNER JOIN
+    `user` user_table
+        ON
+    (
+        document_table.`owner` = user_table.`id`
+    )
+;
