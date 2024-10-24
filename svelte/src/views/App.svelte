@@ -6,7 +6,8 @@
 
     import ActivityBar from './components/ActivityBar.svelte';
 
-    import '../styles.css';
+    import '../app.css';
+    import '../app.custom.css';
 
     import { envs } from '../envs.js';
 

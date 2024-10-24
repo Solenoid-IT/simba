@@ -62,9 +62,9 @@ Restart: `sudo service { name } restart`
 1.  Installing spm          -> `bash <(wget -qO- "https://install.solenoid.it/pkgs/spm/1.0.0/setup")`<br>
 2.  Installing simba        -> `spm install simba`<br>
 3.  Creating a new app      -> `simba app create <fqdn-value> -p <path> -v <version>`<br>
+6.  Moving to the directory -> `cd <app-dir>`<br>
 4.  Configuring the file    -> `<app-dir>/app.json`<br>
 5.  Configuring the files   -> `<app-dir>/credentials/*`<br>
-6.  Moving to the directory -> `cd <app-dir>`<br>
 7.  Configuring databases   -> `php x mysql build`<br>
 8.  Importing the DB models -> `php x mysql import-models`<br>
 9.  Creating the user       -> `php x task OnDemand/User create <tenant> <user> <email>`
