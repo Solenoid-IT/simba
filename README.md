@@ -59,7 +59,7 @@ Restart: `sudo service {name} restart`
 
 
 # Setup
-1.  Installing spm          -> `bash <(wget -qO- "https://install.solenoid.it/pkgs/spm/1.0.0/setup")`<br>
+1.  Installing spm          -> `bash <(wget -qO- "https://install.solenoid.it/spm@1.0.0/setup")`<br>
 2.  Installing simba        -> `spm install simba`<br>
 3.  Creating a new app      -> `simba app create {fqdn-value} -p {path} -v {version}`<br>
 6.  Moving to the directory -> `cd {app-dir}`<br>
