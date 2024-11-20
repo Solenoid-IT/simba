@@ -18,10 +18,10 @@ This software is designed for <a href="https://releases.ubuntu.com/22.04/ubuntu-
 
 
 # CLI
-You can execute a specific task from bootstrap.php file (<b>CLI</b> context)
+You can execute a specific task (<b>CLI</b> context)
 <br>
 
-Syntax: `php x task { id } { method } ...{ args }`
+Syntax: `php x task {id} {method} ...{args}`
 
 <br>
 
@@ -43,17 +43,17 @@ You can use or extend the integrated daemon
 <br><br>
 
 Setup :
-1. Creating the service -> `sudo php x daemon register { name }` ( default-name is <b>< app-id >.simba</b> )<br>
-2. Allowing run at boot -> `sudo simba service enable { name }`
+1. Creating the service -> `sudo php x daemon register {name}` ( default-name is <b>{app-id}.simba</b> )<br>
+2. Allowing run at boot -> `sudo simba service enable {name}`
 <br><br>
 
-Start: `sudo service { name } start`
+Start: `sudo service {name} start`
 <br><br>
 
-Stop: `sudo service { name } stop`
+Stop: `sudo service {name} stop`
 <br><br>
 
-Restart: `sudo service { name } restart`
+Restart: `sudo service {name} restart`
 <br><br><br>
 
 

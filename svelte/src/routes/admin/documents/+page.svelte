@@ -124,7 +124,7 @@
                         'column':  'tags',
                         'value':   record['tags'].map( function (tag) { return tag['name'] + '=' + tag['value']; } ).join(';'),
 
-                        'content': record['tags'].map( function (tag) { return '<span class="tag-label" style="border-bottom-color: ' + tag['color'] + '">' + tag['name'] + ': ' + tag['value'] + '</span>' } ).join('')
+                        'content': record['tags'].map( function (tag) { return '<span class="tag-label tag-label-color" style="border-bottom-color: ' + tag['color'] + '">' + tag['name'] + ': ' + tag['value'] + '</span>' } ).join('')
                     },
 
                     {
