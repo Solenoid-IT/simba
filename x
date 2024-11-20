@@ -370,7 +370,7 @@ switch ( $argv[1] )
 
 
         // Printing the value
-        echo "\n\nApp has been initialized. Visit 'https://kb.solenoid.it/simba@1.0.0' for configuring the app\n\n\n";
+        echo "\n\nApp has been initialized at '" . __DIR__ . "' (project-basedir). Visit 'https://kb.solenoid.it/simba@1.0.0' for configuring the app\n\n\n";
     break;
 
 
