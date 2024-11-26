@@ -7,8 +7,7 @@ namespace App\Models\local\simba_db;
 
 
 use \Solenoid\MySQL\Model;
-
-use \App\Stores\Connections\MySQL\Store as MySQLConnectionsStore;
+use \Solenoid\MySQL\ConnectionStore;
 
 
 
@@ -18,14 +17,35 @@ class DocumentTagView extends Model
 
 
 
+    public string $conn_id  = 'local/simba_db';
+    public string $database = 'simba_db';
+    public string $table    = 'view::document_tag::all';
+
+
+
     # Returns [self]
     private function __construct ()
     {
-        // (Calling the function)
-        parent::__construct( MySQLConnectionsStore::fetch()->connections['local/simba_db'], 'simba_db', 'view::document_tag::all' );
+        // (Getting the value)
+        $connection = ConnectionStore::get( $this->conn_id );
+
+        if ( !$connection )
+        {// Value not found
+            // (Getting the value)
+            $message = "Connection '" . $this->conn_id . "' not found";
+
+            // Throwing an exception
+            throw new \Exception($message);
+
+            // Returning the value
+            return;
+        }
+
+
+
+        // Calling the function
+        parent::__construct( $connection, $this->database, $this->table );
     }
-
-
 
     # Returns [self]
     public static function fetch ()
@@ -38,8 +58,8 @@ class DocumentTagView extends Model
 
 
 
-        // (Resetting the condition)
-        ( self::$instance )->reset();
+        // (Resetting the model)
+        self::$instance->reset();
 
 
 

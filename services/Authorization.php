@@ -22,8 +22,8 @@ use \Solenoid\SMTP\Mail;
 use \Solenoid\SMTP\MailBox;
 use \Solenoid\SMTP\MailBody;
 use \Solenoid\SMTP\Retry;
+use \Solenoid\SMTP\ConnectionStore as SmtpConnectionStore;
 
-use \App\Stores\Connections\SMTP\Store as SMTPConnectionsStore;
 use \App\Models\local\simba_db\Authorization as AuthorizationModel;
 use \App\Services\Client as ClientService;
 
@@ -101,7 +101,7 @@ class Authorization extends Service
     public static function send (string $token, string $receiver, string $type, ?string $ip = null, ?string $ua = null)
     {
         // (Getting the value)
-        $connection = SMTPConnectionsStore::fetch()->connections['service'];
+        $connection = SmtpConnectionStore::get( 'service' );
 
 
 

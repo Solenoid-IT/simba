@@ -7,10 +7,8 @@ namespace App\Models\local\simba_db;
 
 
 use \Solenoid\MySQL\Model;
-
+use \Solenoid\MySQL\ConnectionStore;
 use \Solenoid\MySQL\Record;
-
-use \App\Stores\Connections\MySQL\Store as MySQLConnectionsStore;
 
 
 
@@ -20,14 +18,35 @@ class User extends Model
 
 
 
+    public string $conn_id  = 'local/simba_db';
+    public string $database = 'simba_db';
+    public string $table    = 'user';
+
+
+
     # Returns [self]
     private function __construct ()
     {
-        // (Calling the function)
-        parent::__construct( MySQLConnectionsStore::fetch()->connections['local/simba_db'], 'simba_db', 'user' );
+        // (Getting the value)
+        $connection = ConnectionStore::get( $this->conn_id );
+
+        if ( !$connection )
+        {// Value not found
+            // (Getting the value)
+            $message = "Connection '" . $this->conn_id . "' not found";
+
+            // Throwing an exception
+            throw new \Exception($message);
+
+            // Returning the value
+            return;
+        }
+
+
+
+        // Calling the function
+        parent::__construct( $connection, $this->database, $this->table );
     }
-
-
 
     # Returns [self]
     public static function fetch ()
@@ -40,8 +59,8 @@ class User extends Model
 
 
 
-        // (Resetting the condition)
-        ( self::$instance )->reset();
+        // (Resetting the model)
+        self::$instance->reset();
 
 
 

@@ -564,6 +564,138 @@ switch ( $argv[1] )
         echo "\n\nFile `{$storage}{$file_path}` has been created !\n\n\n";
     break;
 
+    case 'make:model':
+        // (Including the file)
+        include_once( __DIR__ . '/autoload.php' );
+
+
+
+        // (Creating a Storage)
+        $storage = new \Solenoid\Core\Storage( __DIR__ . '/models', true );
+
+
+
+        // (Getting the value)
+        $id = $argv[2];
+
+
+
+        // (Getting the value)
+        $file_path = "/$id.php";
+
+        if ( $storage->file_exists( $file_path ) )
+        {// (File found)
+            // Printing the value
+            echo "\n\nCannot create the controller :: File '{$storage}{$file_path}' already exists !\n\n\n";
+
+            // Closing the process
+            exit;
+        }
+
+
+
+        // (Getting the values)
+        $parts        = explode( '/', $id );
+        $class_name   = $parts[ count( $parts ) - 1 ];
+        $class_path   = count( $parts ) === 1 ? '' : '\\' . implode( '\\', array_slice( $parts, 0, count( $parts ) - 1 ) );
+        $file_content =
+            <<<EOD
+            <?php
+
+
+
+            namespace App\Models$class_path;
+            
+            
+
+            use \Solenoid\MySQL\Model;
+            use \Solenoid\MySQL\ConnectionStore;
+
+
+
+            class $class_name extends Model
+            {
+                private static self \$instance;
+
+
+
+                public string \$conn_id  = 'local/simba_db';
+                public string \$database = 'simba_db';
+                public string \$table    = 'visitor';
+
+
+
+                # Returns [self]
+                private function __construct ()
+                {
+                    // (Getting the value)
+                    \$connection = ConnectionStore::get( \$this->conn_id );
+
+                    if ( !\$connection )
+                    {// Value not found
+                        // (Getting the value)
+                        \$message = "Connection '" . \$this->conn_id . "' not found";
+
+                        // Throwing an exception
+                        throw new \Exception(\$message);
+
+                        // Returning the value
+                        return;
+                    }
+
+
+
+                    // Calling the function
+                    parent::__construct( \$connection, \$this->database, \$this->table );
+                }
+
+                # Returns [self]
+                public static function fetch ()
+                {
+                    if ( !isset( self::\$instance ) )
+                    {// Value not found
+                        // (Getting the value)
+                        self::\$instance = new self();
+                    }
+
+
+
+                    // (Resetting the model)
+                    self::\$instance->reset();
+
+
+
+                    // Returning the value
+                    return self::\$instance;
+                }
+            }
+
+
+
+            ?>
+            EOD
+        ;
+
+
+
+        if ( !( $storage )->write( $file_path, $file_content ) )
+        {// (Unable to write to the file)
+            // (Setting the value)
+            $message = "Unable to write to the file '{$storage}{$file_path}'";
+
+            // Throwing an exception
+            throw new \Exception($message);
+
+            // Closing the process
+            exit;
+        }
+
+
+
+        // Printing the value
+        echo "\n\nFile `{$storage}{$file_path}` has been created !\n\n\n";
+    break;
+
     case 'make:service':
         // (Including the file)
         include_once( __DIR__ . '/autoload.php' );
@@ -1296,6 +1428,8 @@ switch ( $argv[1] )
 
 
 
+                            /*
+
                             // (Setting the value)
                             $model_file_content =
                                 <<<EOD
@@ -1357,6 +1491,89 @@ switch ( $argv[1] )
                                     {
                                         // Returning the value
                                         return ( new Query( \$this->connection ) )->from( \$this->database, "view::\$this->table::all" )->select_all()->run();
+                                    }
+                                }
+
+
+
+                                ?>
+                                EOD
+                            ;
+
+                            */
+
+
+
+                            // (Getting the value)
+                            $model_file_content =
+                                <<<EOD
+                                <?php
+
+
+
+                                namespace App\Models\\$profile\\$db_name;
+                                
+                                
+
+                                use \Solenoid\MySQL\Model;
+                                use \Solenoid\MySQL\ConnectionStore;
+
+
+
+                                class $model_name extends Model
+                                {
+                                    private static self \$instance;
+
+
+
+                                    public string \$conn_id  = '$profile/$db_name';
+                                    public string \$database = '$database->name';
+                                    public string \$table    = '$entity->name';
+
+
+
+                                    # Returns [self]
+                                    private function __construct ()
+                                    {
+                                        // (Getting the value)
+                                        \$connection = ConnectionStore::get( \$this->conn_id );
+
+                                        if ( !\$connection )
+                                        {// Value not found
+                                            // (Getting the value)
+                                            \$message = "Connection '" . \$this->conn_id . "' not found";
+
+                                            // Throwing an exception
+                                            throw new \Exception(\$message);
+
+                                            // Returning the value
+                                            return;
+                                        }
+
+
+
+                                        // Calling the function
+                                        parent::__construct( \$connection, \$this->database, \$this->table );
+                                    }
+
+                                    # Returns [self]
+                                    public static function fetch ()
+                                    {
+                                        if ( !isset( self::\$instance ) )
+                                        {// Value not found
+                                            // (Getting the value)
+                                            self::\$instance = new self();
+                                        }
+
+
+
+                                        // (Resetting the model)
+                                        self::\$instance->reset();
+
+
+
+                                        // Returning the value
+                                        return self::\$instance;
                                     }
                                 }
 

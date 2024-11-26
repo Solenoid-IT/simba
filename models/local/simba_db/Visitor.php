@@ -11,7 +11,7 @@ use \Solenoid\MySQL\ConnectionStore;
 
 
 
-class Tag extends Model
+class Visitor extends Model
 {
     private static self $instance;
 
@@ -19,7 +19,7 @@ class Tag extends Model
 
     public string $conn_id  = 'local/simba_db';
     public string $database = 'simba_db';
-    public string $table    = 'tag';
+    public string $table    = 'visitor';
 
 
 

@@ -7,10 +7,7 @@ namespace App\Models\local\simba_db;
 
 
 use \Solenoid\MySQL\Model;
-
-use \Solenoid\MySQL\Query;
-
-use \App\Stores\Connections\MySQL\Store as MySQLConnectionsStore;
+use \Solenoid\MySQL\ConnectionStore;
 
 
 
@@ -20,14 +17,35 @@ class Authorization extends Model
 
 
 
+    public string $conn_id  = 'local/simba_db';
+    public string $database = 'simba_db';
+    public string $table    = 'authorization';
+
+
+
     # Returns [self]
     private function __construct ()
     {
-        // (Calling the function)
-        parent::__construct( MySQLConnectionsStore::fetch()->connections['local/simba_db'], 'simba_db', 'authorization' );
+        // (Getting the value)
+        $connection = ConnectionStore::get( $this->conn_id );
+
+        if ( !$connection )
+        {// Value not found
+            // (Getting the value)
+            $message = "Connection '" . $this->conn_id . "' not found";
+
+            // Throwing an exception
+            throw new \Exception($message);
+
+            // Returning the value
+            return;
+        }
+
+
+
+        // Calling the function
+        parent::__construct( $connection, $this->database, $this->table );
     }
-
-
 
     # Returns [self]
     public static function fetch ()
@@ -40,22 +58,13 @@ class Authorization extends Model
 
 
 
-        // (Resetting the condition)
-        ( self::$instance )->reset();
+        // (Resetting the model)
+        self::$instance->reset();
 
 
 
         // Returning the value
         return self::$instance;
-    }
-
-
-
-    # Returns [Cursor|false]
-    public function view ()
-    {
-        // Returning the value
-        return ( new Query( $this->connection ) )->from( $this->database, "view::$this->table::all" )->select_all()->run();
     }
 
 
