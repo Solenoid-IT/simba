@@ -146,15 +146,12 @@ switch ( $argv[1] )
             $credentials_content =
                 <<<EOD
                 {
-                    "local":
+                    "local/simba_db":
                     {
-                        "simba_db":
-                        {
-                            "host":     "localhost",
-                            "port":     null,
-                            "username": "simba_db",
-                            "password": ""
-                        }
+                        "host":     "localhost",
+                        "port":     null,
+                        "username": "simba_db",
+                        "password": ""
                     }
                 }
                 EOD
@@ -1122,9 +1119,20 @@ switch ( $argv[1] )
 
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
-                    // (Getting the values)
-                    $profile = basename( dirname( $folder_path ) );
-                    $db_name = basename( $folder_path );
+                    // (Getting the value)
+                    $profile_id = file_get_contents( "$folder_path/profile" );
+
+                    if ( !$profile_id )
+                    {// Value not found
+                        // (Getting the value)
+                        $db_id = dirname( $folder_path, 2 );
+
+                        // Printing the value
+                        echo "\nProfile not found for DB '$db_id'\n\n";
+
+                        // Continuing the iteration
+                        continue;
+                    }
 
 
 
@@ -1132,8 +1140,8 @@ switch ( $argv[1] )
                     $constants =
                     [
                         '%( DB_NAME )%' => $db_name,
-                        '%( DB_USER )%' => $mysql_credentials[$profile][$db_name]['username'],
-                        '%( DB_PASS )%' => $mysql_credentials[$profile][$db_name]['password']
+                        '%( DB_USER )%' => $mysql_credentials[$profile_id]['username'],
+                        '%( DB_PASS )%' => $mysql_credentials[$profile_id]['password']
                     ]
                     ;
 
@@ -1232,9 +1240,20 @@ switch ( $argv[1] )
 
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
-                    // (Getting the values)
-                    $profile = basename( dirname( $folder_path ) );
-                    $db_name = basename( $folder_path );
+                    // (Getting the value)
+                    $profile_id = file_get_contents( "$folder_path/profile" );
+
+                    if ( !$profile_id )
+                    {// Value not found
+                        // (Getting the value)
+                        $db_id = dirname( $folder_path, 2 );
+
+                        // Printing the value
+                        echo "\nProfile not found for DB '$db_id'\n\n";
+
+                        // Continuing the iteration
+                        continue;
+                    }
 
 
 
@@ -1242,8 +1261,8 @@ switch ( $argv[1] )
                     $constants =
                     [
                         '%( DB_NAME )%' => $db_name,
-                        '%( DB_USER )%' => $mysql_credentials[$profile][$db_name]['username'],
-                        '%( DB_PASS )%' => $mysql_credentials[$profile][$db_name]['password']
+                        '%( DB_USER )%' => $mysql_credentials[$profile_id]['username'],
+                        '%( DB_PASS )%' => $mysql_credentials[$profile_id]['password']
                     ]
                     ;
 

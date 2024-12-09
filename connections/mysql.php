@@ -11,13 +11,10 @@ use \Solenoid\MySQL\ConnectionStore;
 
 
 
-foreach ( Credentials::fetch( '/mysql/data.json' ) as $profile => $v )
+foreach ( Credentials::fetch( '/mysql/data.json' ) as $profile => $credentials )
 {// Processing each entry
-    foreach ( $v as $db_name => $credentials )
-    {// Processing each entry
-        // (Setting the value)
-        ConnectionStore::set( "$profile/$db_name", new Connection( $credentials['host'], $credentials['port'], $credentials['username'], $credentials['password'] ) );
-    }
+    // (Setting the value)
+    ConnectionStore::set( $profile, new Connection( $credentials['host'], $credentials['port'], $credentials['username'], $credentials['password'] ) );
 }
 
 
