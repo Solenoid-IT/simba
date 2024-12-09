@@ -1105,7 +1105,7 @@ switch ( $argv[1] )
 
 
                 // (Getting the value)
-                $credentials_folder_path = preg_match( '/^\./', __DIR__, $app_config['credentials'] );
+                $credentials_folder_path = preg_replace( '/^\./', __DIR__, $app_config['credentials']['folder_path'] );
 
 
 
@@ -1125,7 +1125,7 @@ switch ( $argv[1] )
                     if ( !$profile_id )
                     {// Value not found
                         // (Getting the value)
-                        $db_id = dirname( $folder_path, 2 );
+                        $db_id = dirname( $folder_path, -2 );
 
                         // Printing the value
                         echo "\nProfile not found for DB '$db_id'\n\n";
@@ -1187,7 +1187,7 @@ switch ( $argv[1] )
 
 
                     // (Appending the value)
-                    $dbs[] = "$profile/$db_name";
+                    $dbs[] = dirname( $folder_path, -2 );
                 }
 
 
@@ -1226,7 +1226,7 @@ switch ( $argv[1] )
 
 
                 // (Getting the value)
-                $credentials_folder_path = preg_match( '/^\./', __DIR__, $app_config['credentials'] );
+                $credentials_folder_path = preg_replace( '/^\./', __DIR__, $app_config['credentials']['folder_path'] );
 
 
 
@@ -1320,7 +1320,7 @@ switch ( $argv[1] )
                         file_put_contents( $merge_sql_file, replace_values( file_get_contents( "$file_path" ), $constants ) . "\n\n\n", FILE_APPEND );
                     }
 
-                    die(print_r(json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )));
+
 
                     // (Getting the value)
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
@@ -1329,7 +1329,7 @@ switch ( $argv[1] )
 
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
-                    system( "sudo mysql -u $rpu_username < $merge_sql_file" );
+                    system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
 
                     // (Removing the file)
                     unlink( $merge_sql_file );
