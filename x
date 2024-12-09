@@ -1120,7 +1120,7 @@ switch ( $argv[1] )
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
                     // (Getting the value)
-                    $db_id = dirname( $folder_path ) . '/' . basename( $folder_path );
+                    $db_id = basename( dirname( $folder_path ) ) . '/' . basename( $folder_path );
 
 
 
@@ -1243,7 +1243,7 @@ switch ( $argv[1] )
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
                     // (Getting the value)
-                    $db_id = dirname( $folder_path ) . '/' . basename( $folder_path );
+                    $db_id = basename( dirname( $folder_path ) ) . '/' . basename( $folder_path );
 
 
 
