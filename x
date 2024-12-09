@@ -1329,7 +1329,7 @@ switch ( $argv[1] )
 
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
-                    system("sudo mysql -u $rpu_username -p < $merge_sql_file");
+                    system( "sudo mysql -u $rpu_username < $merge_sql_file" );
 
                     // (Removing the file)
                     unlink( $merge_sql_file );
@@ -1337,7 +1337,7 @@ switch ( $argv[1] )
 
 
                     // (Appending the value)
-                    $dbs[] = "$profile/$db_name";
+                    $dbs[] = dirname( $folder_path, 2 );
                 }
 
 
