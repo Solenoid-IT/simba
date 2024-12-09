@@ -1330,7 +1330,7 @@ switch ( $argv[1] )
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
 
 
-
+die("sudo mysql -u $rpu_username -p < $merge_sql_file");
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
                     system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
