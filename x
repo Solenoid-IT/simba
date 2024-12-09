@@ -1246,7 +1246,7 @@ switch ( $argv[1] )
                     if ( !$profile_id )
                     {// Value not found
                         // (Getting the value)
-                        $db_id = dirname( $folder_path, 2 );
+                        $db_id = dirname( $folder_path, -2 );
 
                         // Printing the value
                         echo "\nProfile not found for DB '$db_id'\n\n";
@@ -1325,7 +1325,7 @@ switch ( $argv[1] )
                     // (Getting the value)
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
 
-
+die($rpu_username);
 
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
@@ -1337,7 +1337,7 @@ switch ( $argv[1] )
 
 
                     // (Appending the value)
-                    $dbs[] = dirname( $folder_path, 2 );
+                    $dbs[] = dirname( $folder_path, -2 );
                 }
 
 
