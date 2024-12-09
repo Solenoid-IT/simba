@@ -7,8 +7,7 @@ namespace App\Middlewares\RPC;
 
 
 use \Solenoid\Core\Middleware;
-
-use \Solenoid\Core\App\WebApp;
+use \Solenoid\Core\Credentials;
 
 use \Solenoid\RPC\Request;
 
@@ -20,16 +19,11 @@ class Authenticator extends Middleware
     public static function run ()
     {
         // (Getting the value)
-        $app = WebApp::fetch();
-
-
-
-        // (Getting the value)
         $request = Request::fetch();
 
         if ( !$request->valid ) return false;
 
-        if ( !$request->verify( $app->fetch_credentials()['rpc']['token'] ) ) return false;
+        if ( !$request->verify( Credentials::fetch( 'system/data.json' )['rpc']['token'] ) ) return false;
     }
 }
 

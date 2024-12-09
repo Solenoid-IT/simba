@@ -1,0 +1,9 @@
+CREATE USER '%( DB_USER )%'@'localhost' IDENTIFIED BY '%( DB_PASS )%';
+
+GRANT ALL PRIVILEGES ON `%( DB_NAME )%`.* TO '%( DB_USER )%'@'localhost' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+
+
+-- SHOW GRANTS FOR '%( DB_USER )%'@'localhost';

@@ -107,12 +107,7 @@ switch ( $argv[1] )
 
 
         // (Executing the cmd)
-        system('php x install');
-
-
-
-        // (Executing the command)
-        #echo shell_exec("sudo php x perms set");
+        system( 'php x install' );
 
 
 
@@ -178,7 +173,7 @@ switch ( $argv[1] )
 
 
             // (Executing the cmd)
-            system("sudo chmod 664 \"" . $credentials_storage . $mysql_credentials_file_path .  "\"");
+            system("sudo chmod 640 \"" . $credentials_storage . $mysql_credentials_file_path .  "\"");
         }
 
 
@@ -219,7 +214,7 @@ switch ( $argv[1] )
 
 
             // (Executing the cmd)
-            system("sudo chmod 664 \"" . $credentials_storage . $smtp_credentials_file_path .  "\"");
+            system("sudo chmod 640 \"" . $credentials_storage . $smtp_credentials_file_path .  "\"");
         }
 
 
@@ -243,15 +238,19 @@ switch ( $argv[1] )
                         "passphrase": ""
                     },
 
-                    "rpc":
+                    "api_keys":
                     {
-                        "token": ""
-                    },
+                        "solenoid":
+                        {
+                            "ip-info": "",
+                            "ua-info": ""
+                        },
 
-                    "api":
-                    {
-                        "ip-info": "",
-                        "ua-info": ""
+                        "local":
+                        {
+                            "dev": "",
+                            "prod": ""
+                        }
                     }
                 }
                 EOD
@@ -272,7 +271,7 @@ switch ( $argv[1] )
 
 
             // (Executing the cmd)
-            system("sudo chmod 664 \"" . $credentials_storage . $system_credentials_file_path .  "\"");
+            system("sudo chmod 640 \"" . $credentials_storage . $system_credentials_file_path .  "\"");
         }
 
 
@@ -296,8 +295,9 @@ switch ( $argv[1] )
 
 
 
-            // (Executing the cmd)
-            system("sudo chmod 2775 \"$folder_path\"");
+            // (Executing the cmds)
+            system( "sudo chown -R $core_user:$core_group \"$folder_path\"" );
+            system( "sudo chmod 2775 \"$folder_path\"" );
         }
 
 
@@ -321,8 +321,9 @@ switch ( $argv[1] )
 
 
 
-            // (Executing the cmd)
-            system("sudo chmod 2775 \"$folder_path\"");
+            // (Executing the cmds)
+            system( "sudo chown -R $core_user:$core_group \"$folder_path\"" );
+            system( "sudo chmod 2775 \"$folder_path\"" );
         }
 
 
@@ -1100,7 +1101,7 @@ switch ( $argv[1] )
 
 
                 // (Getting the value)
-                $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ) );
+                $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ), true );
 
 
 
@@ -1665,10 +1666,10 @@ switch ( $argv[1] )
                 else
                 {// Value not found
                     // (Getting the value)
-                    $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ) );
+                    $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ), true );
 
                     // (Getting the value)
-                    $name = "$app_config->id.simba";
+                    $name = "{$app_config['id']}.simba";
                 }
 
 

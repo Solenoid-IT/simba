@@ -37,7 +37,7 @@ class Client extends Service
             [
                 'Action: analyze_ip',
                 'Content-Type: application/json',
-                'License: ' . Credentials::fetch( '/system/data.json' )['api']['ip-info']
+                'License: ' . Credentials::fetch( '/system/data.json' )['api_keys']['solenoid']['ip-info']
             ],
             [
                 'ip' => $ip ?? $request->client_ip
@@ -78,7 +78,7 @@ class Client extends Service
             [
                 'Action: analyze_ua',
                 'Content-Type: application/json',
-                'License: ' . Credentials::fetch( '/system/data.json' )['api']['ua-info']
+                'License: ' . Credentials::fetch( '/system/data.json' )['api_keys']['solenoid']['ua-info']
             ],
             [
                 'ua' => $ua ?? $request->headers['User-Agent']

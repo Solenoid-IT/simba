@@ -66,6 +66,11 @@ foreach ( $spa_routes as $id )
 
 
 
+// (Handling the route)
+Route::handle( "RPC /fluid", Target::define( function () { return 'fluid'; } ) );
+
+
+
 // (Handling the fallback)
 Route::handle_fallback( Target::link( Fallback::class, 'view' ) );
 
