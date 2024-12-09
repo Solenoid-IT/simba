@@ -47,9 +47,11 @@ $helper =
     x scheduler task <id> <action=enable|disable>
 
     x set-envs
+
     x dev
     x build
     x release
+
     x task <path> <method> ...<args>
 
 
@@ -371,7 +373,7 @@ switch ( $argv[1] )
 
 
         // Printing the value
-        echo "\n\nApp has been initialized at '" . __DIR__ . "' (project-basedir). Visit 'https://kb.solenoid.it/simba@1.0.0' for configuring the app\n\n\n";
+        echo "\n\nApp has been initialized at '" . __DIR__ . "' (project-basedir). Visit 'https://docs.solenoid.it/pkgs/simba@1.0.0' for configuring the app\n\n\n";
     break;
 
 

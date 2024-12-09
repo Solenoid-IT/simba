@@ -23,15 +23,10 @@ class User extends Task
     # Returns [void]
     public function create (string $tenant, string $user, string $email)
     {
-        // (Getting the value)
-        $app = App::get();
-
-
-
         // (Sending an http request)
         $response = Client::send
         (
-            'https://' . $app->id . '/api',
+            'https://' . App::$id . '/api',
             'RPC',
             [
                 'Action: user::register',

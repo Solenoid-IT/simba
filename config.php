@@ -26,4 +26,9 @@ $app_config['basedir'] = $root;
 
 
 
+// (Getting the value)
+$app_config['id'] = file_get_contents( "$root/id" );
+
+
+
 ?>
