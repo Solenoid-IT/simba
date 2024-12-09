@@ -1320,12 +1320,12 @@ switch ( $argv[1] )
                         file_put_contents( $merge_sql_file, replace_values( file_get_contents( "$file_path" ), $constants ) . "\n\n\n", FILE_APPEND );
                     }
 
-
+                    die(print_r(json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )));
 
                     // (Getting the value)
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
 
-die($rpu_username);
+
 
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
