@@ -13,6 +13,7 @@ composer.lock
 /capacitor/ios
 
 /credentials/*
+/databases/*/*/build.sql
 
 /web/build
 /web/build_prod

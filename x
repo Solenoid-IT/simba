@@ -31,7 +31,8 @@ $helper =
 
     x make:controller <id>
 
-    x mysql build <root-username>
+    x mysql build:make
+    x mysql build:run
     x mysql extract-models
 
     x daemon register ?<name>
@@ -1204,7 +1205,7 @@ switch ( $argv[1] )
                 }
             break;
 
-            case 'build':
+            case 'build:make':
                 # Returns [string]
                 function replace_values (string $content, array $values)
                 {
@@ -1279,7 +1280,7 @@ switch ( $argv[1] )
 
 
                     // (Getting the value)
-                    $merge_sql_file = "$folder_path/merge.sql";
+                    $merge_sql_file = "$folder_path/build.sql";
 
                     // (Writing to the file)
                     file_put_contents( $merge_sql_file, '' );
@@ -1327,6 +1328,8 @@ switch ( $argv[1] )
 
 
 
+                    /*
+
                     // (Getting the value)
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
 
@@ -1334,10 +1337,10 @@ switch ( $argv[1] )
 
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
-                    system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
+                    #system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
+                    system( "sudo mysql -u $rpu_username < $merge_sql_file" );
 
-                    // (Removing the file)
-                    unlink( $merge_sql_file );
+                    */
 
 
 
@@ -1353,7 +1356,34 @@ switch ( $argv[1] )
                     $dbs_csv = '"' . implode( '";"', $dbs ) . '"';
 
                     // Printing the value
-                    echo "\n\nDatabases $dbs_csv have been imported\n\n\n";
+                    echo "\n\nDatabases $dbs_csv have been built\n\n\n";
+                }
+            break;
+
+            case 'build:run':
+                // (Getting the value)
+                $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ), true );
+
+
+
+                // (Getting the value)
+                $credentials_folder_path = preg_replace( '/^\./', __DIR__, $app_config['credentials']['folder_path'] );
+
+
+
+                // (Getting the value)
+                $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
+
+                foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
+                {// Processing each entry
+                    // (Getting the value)
+                    $merge_sql_file = "$folder_path/build.sql";
+
+
+
+                    // (Executing the cmd)
+                    #system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
+                    system( "sudo mysql -u $rpu_username < $merge_sql_file" );
                 }
             break;
 
