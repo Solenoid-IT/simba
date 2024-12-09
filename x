@@ -1242,8 +1242,9 @@ switch ( $argv[1] )
 
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
-                    // (Getting the value)
-                    $db_id = basename( dirname( $folder_path ) ) . '/' . basename( $folder_path );
+                    // (Getting the values)
+                    $db_name = basename( $folder_path );
+                    $db_id   = basename( dirname( $folder_path ) ) . '/' . $db_name;
 
 
 
@@ -1330,7 +1331,7 @@ switch ( $argv[1] )
                     $rpu_username = json_decode( file_get_contents( "$credentials_folder_path/system/data.json" ), true )['mysql']['rpu_username'];
 
 
-die("sudo mysql -u $rpu_username -p < $merge_sql_file");
+
                     // (Executing the cmd)
                     #echo shell_exec("sudo mysql -u $username -p$password $db_name < $merge_sql_file");
                     system( "sudo mysql -u $rpu_username -p < $merge_sql_file" );
