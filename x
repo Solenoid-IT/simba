@@ -1120,13 +1120,15 @@ switch ( $argv[1] )
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
                     // (Getting the value)
+                    $db_id = dirname( $folder_path ) . '/' . basename( $folder_path );
+
+
+
+                    // (Getting the value)
                     $profile_id = file_get_contents( "$folder_path/profile" );
 
                     if ( !$profile_id )
                     {// Value not found
-                        // (Getting the value)
-                        $db_id = dirname( $folder_path, -2 );
-
                         // Printing the value
                         echo "\nProfile not found for DB '$db_id'\n\n";
 
@@ -1187,7 +1189,7 @@ switch ( $argv[1] )
 
 
                     // (Appending the value)
-                    $dbs[] = dirname( $folder_path, -2 );
+                    $dbs[] = $db_id;
                 }
 
 
@@ -1241,13 +1243,15 @@ switch ( $argv[1] )
                 foreach ( glob( __DIR__ . '/databases/*/*' ) as $folder_path )
                 {// Processing each entry
                     // (Getting the value)
+                    $db_id = dirname( $folder_path ) . '/' . basename( $folder_path );
+
+
+
+                    // (Getting the value)
                     $profile_id = file_get_contents( "$folder_path/profile" );
 
                     if ( !$profile_id )
                     {// Value not found
-                        // (Getting the value)
-                        $db_id = dirname( $folder_path, -2 );
-
                         // Printing the value
                         echo "\nProfile not found for DB '$db_id'\n\n";
 
@@ -1337,7 +1341,7 @@ switch ( $argv[1] )
 
 
                     // (Appending the value)
-                    $dbs[] = dirname( $folder_path, -2 );
+                    $dbs[] = $db_id;
                 }
 
 
