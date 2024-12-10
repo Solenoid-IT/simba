@@ -72,10 +72,11 @@ Restart: `sudo service {name} restart`
 11. Importing the DB models -> `php x mysql extract-models`<br>
 12. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
 13. Building the app (SPA)  -> `php x build`<br>
-<br><br><br>
+<br><br>
 
 Server with private IP :<br>
 1. Enabling "Self-Signed cert" -> `simba vh config {fqdn}`
+2. Restarting the web-server   -> `sudo service apache2 restart`
 
 
 
