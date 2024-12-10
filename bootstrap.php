@@ -32,7 +32,7 @@ switch ( App::$mode )
 {
     case 'cli':
         // (Adding the env)
-        Env::add( 'dev', new Env( Env::TYPE_DEV, [ 'vps' ] ) );
+        Env::add( 'dev', new Env( Env::TYPE_DEV, [ gethostname() ] ) );
 
 
 
