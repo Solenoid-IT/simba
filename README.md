@@ -61,17 +61,21 @@ Restart: `sudo service {name} restart`
 # Setup
 1.  Installing spm          -> `bash <(wget -qO- "https://install.solenoid.it/spm@1.0.0/setup")`<br>
 2.  Installing simba        -> `spm install simba`<br>
-3.  Creating a new app      -> `simba app create {fqdn-value} -p {path} -v {version}`<br>
-4.  Moving to the directory -> `cd {project-directory}`<br>
-5.  Initializing the app    -> `php x init`<br>
-6.  Configuring the file    -> `{project-directory}/app.json`<br>
-7.  Configuring the files   -> `{project-directory}/credentials/*`<br>
-8.  Building the sql        -> `php x mysql build:make`<br>
-9.  Running the built sql   -> `php x mysql build:run`<br>
-10. Importing the DB models -> `php x mysql extract-models`<br>
-11. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
-12. Building the app (SPA)  -> `php x build`<br>
+3.  Creating a new app      -> `simba app create {fqdn} -p {path} -v {version}`<br>
+4.  Creating the cert       -> `simba vh make-cert {fqdn} -p {path}`<br>
+5.  Moving to the directory -> `cd {project-directory}`<br>
+6.  Initializing the app    -> `php x init`<br>
+7.  Configuring the file    -> `{project-directory}/app.json`<br>
+8.  Configuring the files   -> `{project-directory}/credentials/*`<br>
+9.  Building the sql        -> `php x mysql build:make`<br>
+10. Running the built sql   -> `php x mysql build:run`<br>
+11. Importing the DB models -> `php x mysql extract-models`<br>
+12. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
+13. Building the app (SPA)  -> `php x build`<br>
 <br><br><br>
+
+Server with private IP :<br>
+1. Enabling "Self-Signed cert" -> `simba vh config {fqdn}`
 
 
 
