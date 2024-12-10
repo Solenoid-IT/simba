@@ -63,7 +63,7 @@ Restart: `sudo service {name} restart`
 2.  Installing simba        -> `spm install simba`<br>
 3.  Creating a new app      -> `simba app create {fqdn} -p {path} -v {version}`<br>
 4.  Moving to the directory -> `cd {project-directory}`<br>
-5.  Creating the cert       -> `simba vh make-cert {fqdn} -p {path}`<br>
+5.  Creating the cert       -> `simba vh make-cert {fqdn} -p {path}` <b>*</b><br>
 6.  Initializing the app    -> `php x init`<br>
 7.  Configuring the file    -> `{project-directory}/app.json`<br>
 8.  Configuring the files   -> `{project-directory}/credentials/*`<br>
@@ -74,7 +74,7 @@ Restart: `sudo service {name} restart`
 13. Building the app (SPA)  -> `php x build`<br>
 <br><br>
 
-Server with private IP :<br>
+<b>*</b> Server with private IP :<br>
 1. Enabling "Self-Signed cert" -> `simba vh config {fqdn}`
 2. Restarting the web-server   -> `sudo service apache2 restart`
 
