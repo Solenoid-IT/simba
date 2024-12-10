@@ -68,7 +68,7 @@ Restart: `sudo service {name} restart`
 7.  Configuring the files   -> `{project-directory}/credentials/*`<br>
 8.  Building the sql        -> `php x mysql build:make`<br>
 9.  Running the built sql   -> `php x mysql build:run`<br>
-10. Importing the DB models -> `php x mysql import-models`<br>
+10. Importing the DB models -> `php x mysql extract-models`<br>
 11. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
 12. Building the app (SPA)  -> `php x build`<br>
 <br><br><br>
