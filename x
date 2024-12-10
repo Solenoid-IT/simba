@@ -1272,7 +1272,7 @@ switch ( $argv[1] )
                     ]
                     ;
 
-die(print_r($constants));
+
 
                     // (Setting the value)
                     $sql_context_pad_length = 86;
