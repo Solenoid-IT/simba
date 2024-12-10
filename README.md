@@ -62,8 +62,8 @@ Restart: `sudo service {name} restart`
 1.  Installing spm          -> `bash <(wget -qO- "https://install.solenoid.it/spm@1.0.0/setup")`<br>
 2.  Installing simba        -> `spm install simba`<br>
 3.  Creating a new app      -> `simba app create {fqdn} -p {path} -v {version}`<br>
-4.  Creating the cert       -> `simba vh make-cert {fqdn} -p {path}`<br>
-5.  Moving to the directory -> `cd {project-directory}`<br>
+4.  Moving to the directory -> `cd {project-directory}`<br>
+5.  Creating the cert       -> `simba vh make-cert {fqdn} -p {path}`<br>
 6.  Initializing the app    -> `php x init`<br>
 7.  Configuring the file    -> `{project-directory}/app.json`<br>
 8.  Configuring the files   -> `{project-directory}/credentials/*`<br>
