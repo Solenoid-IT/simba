@@ -110,10 +110,33 @@ class Authorization extends Service
 
         if ( $response->status->code !== 200 )
         {// (Request failed)
-            // Returning the value
-            return
-                new Response( new Status(500), [], [ 'error' => [ 'message' => 'Unable to detect the client' ] ] )
+            if ( $response->status->code !== 401 )
+            {// (Client is authorized)
+                // Returning the value
+                return
+                    new Response( new Status(500), [], [ 'error' => [ 'message' => 'Unable to detect the client' ] ] )
+                ;
+            }
+        }
+
+
+
+        if ( $response->status->code === 401 )
+        {// (Client is not authorized)
+            // (Getting the value)
+            $client =
+            [
+                'ip'          =>
+                [
+                    'address' => $_SERVER['REMOTE_ADDR']
+                ]
+            ]
             ;
+        }
+        else
+        {// (Client is authorized)
+            // (Getting the value)
+            $client = $response->body;
         }
 
 
@@ -142,7 +165,7 @@ class Authorization extends Service
                     [
                         'app_name'     => App::$name,
                         'type'         => $type,
-                        'client'       => $response->body,
+                        'client'       => $client,
                         'endpoint_url' => Request::fetch()->url->fetch_base() . "/admin/authorization/$token"
                     ]
                 )

@@ -70,8 +70,8 @@ Restart: `sudo service {name} restart`
 9.  Building the sql        -> `php x mysql build:make`<br>
 10. Running the built sql   -> `php x mysql build:run`<br>
 11. Importing the DB models -> `php x mysql extract-models`<br>
-12. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
-13. Building the app (SPA)  -> `php x build`<br>
+12. Building the app (SPA)  -> `php x build`<br>
+13. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
 <br><br>
 
 <b>*</b> Server with private IP :<br>

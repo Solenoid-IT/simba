@@ -389,21 +389,6 @@ switch ( $argv[1] )
 
 
 
-        /*
-
-        // (Executing the cmd)
-        system("sudo rm -rf ./svelte/node_modules");
-
-        // (Setting the cwd)
-        chdir( "$core_folder_path/svelte" );
-
-        // (Executing the cmd)
-        system("npm install");
-
-        */
-
-
-
         // (Getting the value)
         $fqdn = file_get_contents( __DIR__ . '/id' );
 
@@ -446,6 +431,17 @@ switch ( $argv[1] )
         system( "sudo usermod -a -G $core_group $core_user" );
         #system( 'exec su -l $USER' );
         system( 'exec su -l $USER -c cd "' . __DIR__ . '"' );
+
+
+
+        // (Executing the cmd)
+        system( 'sudo rm -rf "' . __DIR__ . '/svelte/node_modules"' );
+
+        // (Setting the cwd)
+        chdir( __DIR__ . '/svelte' );
+
+        // (Executing the cmd)
+        system( 'npm install' );
     
 
 
