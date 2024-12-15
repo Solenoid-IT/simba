@@ -5,6 +5,7 @@
 use \Solenoid\Core\Routing\Route;
 use \Solenoid\Core\Routing\Target;
 
+use \App\Controllers\Test;
 use \App\Controllers\API;
 use \App\Controllers\Authorization;
 use \App\Controllers\SPA;

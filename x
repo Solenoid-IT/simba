@@ -281,10 +281,15 @@ switch ( $argv[1] )
             // (Getting the value)
             $folder_path = explicit_path( __DIR__, $storage['path'] );
 
-            if ( !( new \Solenoid\Core\Storage( $folder_path, true ) )->make_dir( '/' ) )
-            {// (Unable to make the directory)
+
+
+            // (Creating a Storage)
+            $storage = new \Solenoid\Core\Storage( $storage['path'], true, [], 2 );
+
+            if ( !$storage->build() )
+            {// (Unable to build the storage)
                 // (Setting the value)
-                $message = "Unable to make the directory '$folder_path'";
+                $message = "Unable to build the storage '$storage'";
 
                 // Throwing an exception
                 throw new \Exception($message);
@@ -298,6 +303,10 @@ switch ( $argv[1] )
             // (Executing the cmds)
             system( "sudo chown -R $core_user:$core_group \"$folder_path\"" );
             system( "sudo chmod 2775 \"$folder_path\"" );
+
+            // (Executing the cmd)
+            #system( "sudo chgrp -R $core_group \"$folder_path\"" );
+            #system( "sudo chmod -R g=rws \"$folder_path\"/*" );
         }
 
 
@@ -307,10 +316,10 @@ switch ( $argv[1] )
             // (Getting the value)
             $folder_path = explicit_path( __DIR__, $folder_path );
 
-            if ( !( new \Solenoid\Core\Storage( $folder_path, true ) )->make_dir( '/' ) )
-            {// (Unable to make the directory)
+            if ( !( new \Solenoid\Core\Storage( $folder_path, true ) )->build() )
+            {// (Unable to build the storage)
                 // (Setting the value)
-                $message = "Unable to make the directory '$folder_path'";
+                $message = "Unable to build the storage '$folder_path'";
 
                 // Throwing an exception
                 throw new \Exception($message);
@@ -335,6 +344,31 @@ switch ( $argv[1] )
         {// (Directory found)
             // (Executing the cmd)
             system("sudo rm -rf \"$views_cache_folder_path\"/*");
+        }
+
+
+
+        foreach ( $app_config['loggers'] as $logger )
+        {// Processing each entry
+            // (Getting the value)
+            $file_path = explicit_path( __DIR__, $logger['path'] );
+
+
+
+            // (Getting the value)
+            $folder_path = dirname( $file_path );
+
+            if ( !is_dir( $folder_path ) )
+            {// (Directory not found)
+                // (Executing the cmd)
+                system( "sudo mkdir -p \"$folder_path\"" );
+            }
+
+
+
+            // (Executing the cmds)
+            system( "sudo touch \"$file_path\"" );
+            system( "sudo chmod 664 \"$file_path\"" );
         }
 
 
@@ -367,6 +401,51 @@ switch ( $argv[1] )
         system("npm install");
 
         */
+
+
+
+        // (Getting the value)
+        $fqdn = file_get_contents( __DIR__ . '/id' );
+
+        if ( !shell_exec("dig +short \"$fqdn\"") )
+        {// (FQDN has not been resolved)
+            // (Setting the value)
+            $hosts_file_path = '/etc/hosts';
+
+            // (Getting the value)
+            $local_dns_entry = "127.0.0.1 $fqdn";
+
+            if ( strpos( shell_exec( "sudo cat \"$hosts_file_path\"" ), $local_dns_entry ) === false )
+            {// Match failed
+                if ( readline( "Do you want to map fqdn '$fqdn' to localhost ? [Y/n]\n" ) === 'Y' )
+                {// (Confirmation is ok)
+                    // (Executing the cmd)
+                    echo shell_exec
+                    (
+                        implode
+                        (
+                            "\n",
+                           [
+                                "sudo tee -a \"$hosts_file_path\" <<EOF",
+                                "",
+                                "# Simba (fqdn: $fqdn)",
+                                $local_dns_entry,
+                                'EOF'
+                            ] 
+                        )
+                        
+                    )
+                    ;
+                }
+            }
+        }
+
+
+
+        // (Executing the cmds)
+        system( "sudo usermod -a -G $core_group $core_user" );
+        #system( 'exec su -l $USER' );
+        system( 'exec su -l $USER -c cd "' . __DIR__ . '"' );
     
 
 
