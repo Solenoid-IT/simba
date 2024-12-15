@@ -60,7 +60,7 @@ switch ( App::$mode )
 foreach ( $app_config['storages'] as $storage )
 {// Processing each entry
     // (Adding the storage)
-    Storage::add( $storage['id'], new Storage( preg_replace( '/^\./', __DIR__, $storage['path'] ), true ) );
+    Storage::add( $storage['id'], new Storage( preg_replace( '/^\./', __DIR__, $storage['path'] ), true, [], 2 ) );
 }
 
 
