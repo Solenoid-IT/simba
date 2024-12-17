@@ -2095,9 +2095,10 @@ switch ( $argv[1] )
     break;
 
     case 'make-dev-cert':
-        // (Getting the values)
-        $core_config    = json_decode( file_get_contents( __DIR__ . '/svelte/.core' ), true );
+        // (Getting the value)
+        $core_config = json_decode( file_get_contents( __DIR__ . '/svelte/.core' ), true );
 
+        // (Getting the value)
         $key_file_path  = $core_config['dev_server']['https']['key'];
         $cert_file_path = $core_config['dev_server']['https']['cert'];
 
@@ -2119,6 +2120,8 @@ switch ( $argv[1] )
             $cert_info = false;
         }
 
+
+
         if ( $cert_info === false || time() >= $cert_info['validTo_time_t'] )
         {// (Certificate not found or is expired)
             // Printing the value
@@ -2129,11 +2132,17 @@ switch ( $argv[1] )
         }
     break;
 
+
+
     case 'dev':
         // (Executing the cmds)
         system( 'php x set-envs' );
-        system( 'sudo php x set-ldns' );
         system( 'sudo php x make-dev-cert' );
+
+
+
+        // (Executing the cmd)
+        system( 'sudo php x set-ldns' );
 
 
 
@@ -2146,7 +2155,7 @@ switch ( $argv[1] )
                 chdir( __DIR__ );
 
                 // (Executing the cmd)
-                system('php x build');
+                system( 'php x build' );
             }
         )
         ;
@@ -2156,14 +2165,13 @@ switch ( $argv[1] )
         // (Executing the cmd)
         #system("npm run dev -- --open --port 3000");
         #system("npm run dev -- --open");
-        system("npm run dev");
+        system( 'npm run dev' );
     break;
 
     case 'build':
         // (Executing the cmds)
         system( 'php x set-envs' );
-        system( 'sudo php x set-ldns' );
-        system( 'php x make-dev-cert' );
+        system( 'sudo php x make-dev-cert' );
 
 
 
@@ -2190,12 +2198,12 @@ switch ( $argv[1] )
 
 
 
-        // (Executing the command)
-        echo shell_exec("rm -rf $cap_dir/android");
-        echo shell_exec("rm -rf $cap_dir/ios");
+        // (Executing the commands)
+        echo shell_exec( "rm -rf $cap_dir/android" );
+        echo shell_exec( "rm -rf $cap_dir/ios" );
 
-        echo shell_exec('npx cap add android');
-        echo shell_exec('npx cap add ios');
+        echo shell_exec( 'npx cap add android' );
+        echo shell_exec( 'npx cap add ios' );
 
 
 
@@ -2210,7 +2218,7 @@ switch ( $argv[1] )
 
 
         // (Executing the command)
-        echo shell_exec('npx cap sync');
+        echo shell_exec( 'npx cap sync' );
 
 
 
@@ -2274,6 +2282,8 @@ switch ( $argv[1] )
         // (Including the file)
         include_once( __DIR__ . '/release.php' );
     break;
+
+
 
     case 'task':
         if ( count( $argv ) === 2 )
