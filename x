@@ -2137,7 +2137,7 @@ switch ( $argv[1] )
     case 'dev':
         // (Executing the cmds)
         system( 'php x set-envs' );
-        system( 'sudo php x make-dev-cert' );
+        system( 'php x make-dev-cert' );
 
 
 
@@ -2171,7 +2171,7 @@ switch ( $argv[1] )
     case 'build':
         // (Executing the cmds)
         system( 'php x set-envs' );
-        system( 'sudo php x make-dev-cert' );
+        system( 'php x make-dev-cert' );
 
 
 
