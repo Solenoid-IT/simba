@@ -434,13 +434,22 @@ switch ( $argv[1] )
 
 
 
-        // (Executing the cmd)
-        system( 'sudo rm -rf "' . __DIR__ . '/svelte/node_modules"' );
+        // (Getting the value)
+        $cert_dir = __DIR__ . '/svelte/cert';
+
+        if ( !is_dir( $cert_dir ) )
+        {// (Directory not found)
+            // (Making the directory)
+            mkdir( $cert_dir );
+        }
+
+
 
         // (Setting the cwd)
         chdir( __DIR__ . '/svelte' );
 
-        // (Executing the cmd)
+        // (Executing the cmds)
+        system( 'sudo rm -rf "' . __DIR__ . '/svelte/node_modules"' );
         system( 'npm install' );
     
 
