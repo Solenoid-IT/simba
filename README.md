@@ -73,7 +73,8 @@ Restart: `sudo service {name} restart`
 12. Building the app (SPA)  -> `php x build`<br>
 13. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
 <br><br>
-
+Example -> `php x task OnDemand/User create "simba" "admin" "email@sample.com"`
+<br><br>
 <b>*</b> Server with private IP :<br>
 1. Enabling "Self-Signed cert" -> `simba vh config {fqdn}`
 2. Restarting the web-server   -> `sudo service apache2 restart`

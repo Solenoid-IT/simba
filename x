@@ -65,7 +65,8 @@ $helper =
 // Returns [assoc]
 function get_envs ()
 {
-    // (Getting the value)
+    // (Getting the values)
+    $app_id     = file_get_contents( __DIR__ . '/id' );
     $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ), true );
 
 
@@ -73,11 +74,11 @@ function get_envs ()
     // (Getting the value)
     $envs =
     [
-        'APP_ID'         => $app_config['id'],
+        'APP_ID'         => $app_id,
         'APP_NAME'       => $app_config['name'],
-        'APP_URL'        => 'https://' . $app_config['id'],
+        'APP_URL'        => 'https://' . $app_id,
 
-        'BE_HOST'        => $app_config['id']
+        'BE_HOST'        => $app_id
     ]
     ;
 
