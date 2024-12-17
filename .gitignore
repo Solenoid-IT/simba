@@ -19,3 +19,5 @@ composer.lock
 /web/build_prod
 
 /web/cdn/zip/*
+
+/svelte/cert/*

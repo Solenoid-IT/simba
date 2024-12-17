@@ -2085,17 +2085,7 @@ switch ( $argv[1] )
         }
     break;
 
-    case 'dev':
-        // (Executing the cmd)
-        system('php x set-envs');
-
-
-
-        // (Executing the cmd)
-        system('sudo php x set-ldns');
-
-
-
+    case 'make-dev-cert':
         // (Getting the values)
         $core_config    = json_decode( file_get_contents( __DIR__ . '/svelte/.core' ), true );
 
@@ -2128,6 +2118,13 @@ switch ( $argv[1] )
             // (Executing the cmd)
             system( "openssl req -x509 -newkey rsa:4096 -keyout $key_file_path -out $cert_file_path -sha256 -days 3650 -nodes -subj \"/C=IT/ST=Italy/L=Turin/O=Solenoid-IT/OU=Solenoid-IT/CN=Solenoid-IT\"" );
         }
+    break;
+
+    case 'dev':
+        // (Executing the cmds)
+        system( 'php x set-envs' );
+        system( 'sudo php x set-ldns' );
+        system( 'sudo php x make-dev-cert' );
 
 
 
@@ -2154,8 +2151,10 @@ switch ( $argv[1] )
     break;
 
     case 'build':
-        // (Executing the cmd)
-        system('php x set-envs');
+        // (Executing the cmds)
+        system( 'php x set-envs' );
+        system( 'sudo php x set-ldns' );
+        system( 'php x make-dev-cert' );
 
 
 
