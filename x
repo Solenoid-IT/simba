@@ -2163,6 +2163,11 @@ switch ( $argv[1] )
 
 
 
+        // (Setting the cwd)
+        chdir( __DIR__ . '/svelte' );
+
+
+
         // (Executing the cmd)
         #system("npm run dev -- --open --port 3000");
         #system("npm run dev -- --open");

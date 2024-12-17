@@ -78,21 +78,37 @@ Example -> `php x task OnDemand/User create "simba" "admin" "email@sample.com"`
 <b>*</b> Server with private IP :<br>
 1. Enabling "Self-Signed cert" -> `simba vh config {fqdn}`
 2. Restarting the web-server   -> `sudo service apache2 restart`
+<br><br>
+<b>Note</b>
+<br>
+
+Simba App is composed by separated fqdn for <b>frontend</b> and <b>backend</b>
+<br>
+
+Frontend-URL (for SPA realtime development) = `https://front-dev.{app-id}:5173`
+<br>
+
+Backend-URL (for APIs or server-side contents) = `https://{app-id}`
+
+<br><br>
+To reach these endpoints from your computer you have to set your local system hosts file (ex. <b>/etc/hosts</b> for linux) adding these two entries :
+<br><br>
+127.0.0.1 front-dev.{app-id}
+<br>
+{your-simba-server-ip} {app-id}
 
 
 
 # Development
-To start the dev-server you have to digit :
+To start the dev-server for a frontend development session you have to digit :
 <br>
 `php x dev`
 <br><br>
-Access to `https://front-dev.{app-id}`
+Access to `https://front-dev.{app-id}:5173`
 <br><br>
-You can set the fqdn resolution via dns-server or your local system hosts file (ex. <b>/etc/hosts</b> for linux) adding this entry :
+If you are using <b>VS Code</b> for coding you should open the port <b>5173</b> to localhost ( <b>localhost:5173</b> )
 <br>
-Localhost-Entry = `127.0.0.1 front-dev.{app-id}`
-<br><br>
-If you are using <b>VS Code</b> for coding you should open the port <b>5173</b> to localhost
+Now you can access the <b>Frontend-URL</b> from your computer
 <br><br><br>
 
 
