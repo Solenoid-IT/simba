@@ -1770,30 +1770,24 @@ switch ( $argv[1] )
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/daemon.php start');
+                system( 'php ./system/daemon.php start' );
             break;
 
             case 'stop':
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/daemon.php stop');
+                system( 'php ./system/daemon.php stop' );
             break;
 
             case 'restart':
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/daemon.php restart');
+                system( 'php ./system/daemon.php restart' );
             break;
 
 
@@ -1807,10 +1801,10 @@ switch ( $argv[1] )
                 else
                 {// Value not found
                     // (Getting the value)
-                    $app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ), true );
+                    $app_id = file_get_contents( __DIR__ . '/id.json' );
 
                     // (Getting the value)
-                    $name = "{$app_config['id']}.simba";
+                    $name = "{$app_id}.simba";
                 }
 
 
@@ -1822,7 +1816,7 @@ switch ( $argv[1] )
 
 
                 // (Executing the cmd)
-                system("simba service create \"$name\" \"$description\" \"$executable_path\"");
+                system( "simba service create \"$name\" \"$description\" \"$executable_path\"" );
             break;
         }
     break;
@@ -1834,30 +1828,24 @@ switch ( $argv[1] )
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/scheduler.php start');
+                system( 'php ./system/scheduler.php start' );
             break;
 
             case 'stop':
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/scheduler.php stop');
+                system( 'php ./system/scheduler.php stop' );
             break;
 
             case 'restart':
                 // (Setting the cwd)
                 chdir( __DIR__ );
 
-
-
                 // (Executing the cmd)
-                system('php ./system/scheduler.php restart');
+                system( 'php ./system/scheduler.php restart' );
             break;
 
 

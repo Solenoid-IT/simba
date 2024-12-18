@@ -271,7 +271,7 @@
 
 <div class="passwordfield">
     <div class="input-group" bind:this={ element }>
-        <input type="password" class="form-control input" name="{ name }" placeholder="{ placeholder }" data-required={ required } bind:value={ value } on:input={ drawMeter }>
+        <input type="password" class="form-control input form-input" name="{ name }" placeholder="{ placeholder }" data-required={ required } bind:value={ value } on:input={ drawMeter }>
         <div class="input-group-append">
             { #if generable }
                 <button class="btn btn-secondary p-0" type="button" style="width: 40px;" title="generate" on:click={ () => { value = generatePassword(); } }>

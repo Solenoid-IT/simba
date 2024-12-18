@@ -26,10 +26,10 @@ error_reporting(E_ERROR);
 
 
 
-if ( App::fetch_context() !== 'cli' )
-{// (Context is not 'CLI')
+if ( App::fetch_mode() !== 'cli' )
+{// (Mode is not 'CLI')
     // Printing the value
-    echo "\n\nScheduler can be executed only from CLI context\n\n\n";
+    echo "\n\nScheduler can be executed only from CLI mode\n\n\n";
 
     // (Closing the process)
     exit;
