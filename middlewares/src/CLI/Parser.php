@@ -8,7 +8,7 @@ namespace App\Middlewares\CLI;
 
 use \Solenoid\Core\Middleware;
 
-use \Solenoid\Core\App\SysApp;
+use \Solenoid\Core\App\App;
 
 
 
@@ -21,15 +21,10 @@ class Parser extends Middleware
     # Returns [bool] | Throws [Exception]
     public static function run ()
     {
-        // (Getting the value)
-        $app = SysApp::fetch();
-
-
-
         // (Setting the value)
         $args = [];
 
-        foreach ( $app->target->args as $arg )
+        foreach ( App::$target->args as $arg )
         {// Processing each entry
             // (Getting the value)
             $parts = explode( '=', $arg );
