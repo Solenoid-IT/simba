@@ -3,22 +3,22 @@
 
 
 // (Getting the value)
-$src_folder_path = realpath( __DIR__ . '/..' );
+$src_folder_path = __DIR__;
 
 
 
 // (Getting the value)
-$app_config = json_decode( file_get_contents( "$src_folder_path/app.json" ) );
+$app_config = json_decode( file_get_contents( __DIR__ . '/app.json' ) );
 
 
 
 // (Getting the value)
-$app_id = preg_replace( '/^dev\./', '', $app_config->id );
+$app_id = 'simba.solenoid.it';
 
 
 
 // (Getting the value)
-$dst_folder_path = "/var/www/$app_id/core";
+$dst_folder_path = "/var/www/simba/$app_id/core";
 
 if ( is_dir( $dst_folder_path ) )
 {// (Directory found)
@@ -48,8 +48,8 @@ chdir( $dst_folder_path );
 
 // (Getting the values)
 $app_config_file_path = "$dst_folder_path/app.json";
-$app_config           = json_decode( file_get_contents( $app_config_file_path ) );
-$app_config->id       = $app_id;
+$app_config           = json_decode( file_get_contents( $app_config_file_path ), true );
+$app_config['id']     = $app_id;
 
 
 
