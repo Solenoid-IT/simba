@@ -97,6 +97,13 @@ To reach these endpoints from your computer you have to set your local system ho
 127.0.0.1 front-dev.{app-id}
 <br>
 {your-simba-server-ip} {app-id}
+<br><br><br>
+
+
+
+# APIs
+Simba uses <b>sRPC</b> (Solenoid-RPC) standard for APIs. APIs are handled by the <b>ApiGateway</b> controller class.
+<br><br><br>
 
 
 
