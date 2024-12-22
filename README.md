@@ -104,7 +104,7 @@ To reach these endpoints from your computer you have to set your local system ho
 # APIs
 Simba uses <b>sRPC</b> (Solenoid-RPC) standard for APIs. APIs are handled by the <b>ApiGateway</b> controller class.
 <br>
-API-Calls can be invoked by the following way :
+API-Calls can be invoked by the following HTTP request :
 <code>
 RPC /api HTTP/1.1
 Action: My/Custom/Controller.method
