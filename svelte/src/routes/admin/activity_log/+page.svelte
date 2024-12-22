@@ -32,7 +32,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::fetch_data',
+                'Action: User.fetch_data',
                 'Content-Type: application/json',
 
                 'Route: ' + window.location.pathname
@@ -215,7 +215,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::terminate_session',
+                'Action: User.terminate_session',
                 'Content-Type: application/json'
             ],
             JSON.stringify( ids ),

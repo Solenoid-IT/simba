@@ -43,7 +43,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::fetch_data',
+                'Action: User.fetch_data',
                 'Content-Type: application/json',
 
                 'Route: ' + window.location.pathname
@@ -198,7 +198,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::remove',
+                'Action: ' + resourceType + '.remove',
                 'Content-Type: application/json'
             ],
             JSON.stringify( ids ),
@@ -341,7 +341,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::add',
+                'Action: ' + resourceType + '.add',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -390,7 +390,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::wait_authorization',
+                'Action: ' + resourceType + '.wait_authorization',
                 'Content-Type: application/json'
             ],
             '',

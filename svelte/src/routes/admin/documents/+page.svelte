@@ -18,7 +18,7 @@
 
 
 
-    let resourceType       = 'document';
+    let resourceType       = 'Document';
 
     let resourceName       = 'Document';
     let resourceNamePlural = 'Documents';
@@ -46,7 +46,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::fetch_data',
+                'Action: User.fetch_data',
                 'Content-Type: application/json',
 
                 'Route: ' + window.location.pathname
@@ -250,7 +250,7 @@
                 envs.APP_URL + '/api',
                 'RPC',
                 [
-                    'Action: ' + resourceType + '::find',
+                    'Action: ' + resourceType + '.find',
                     'Content-Type: application/json',
 
                     'Route: ' + window.location.pathname
@@ -308,7 +308,7 @@
                 envs.APP_URL + '/api',
                 'RPC',
                 [
-                    'Action: ' + resourceType + '::delete',
+                    'Action: ' + resourceType + '.delete',
                     'Content-Type: application/json'
                 ],
                 JSON.stringify( ids ),
@@ -360,7 +360,7 @@
                 envs.APP_URL + '/api',
                 'RPC',
                 [
-                    'Action: ' + resourceType + '::set_option',
+                    'Action: ' + resourceType + '.set_option',
                     'Content-Type: application/json',
 
                     'Route: ' + window.location.pathname
@@ -572,7 +572,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: ' + resourceType + '::' + ( result.entries['id'].value ? 'update' : 'insert' ),
+                'Action: ' + resourceType + '.' + ( result.entries['id'].value ? 'update' : 'insert' ),
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),

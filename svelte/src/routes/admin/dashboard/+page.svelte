@@ -23,7 +23,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::fetch_data',
+                'Action: User.fetch_data',
                 'Content-Type: application/json',
 
                 'Route: ' + window.location.pathname

@@ -46,7 +46,7 @@ use \App\Stores\Cookies\Store as CookiesStore;
 
 
 
-class API extends Controller
+class APIold extends Controller
 {
     # Returns [void]
     public function rpc ()

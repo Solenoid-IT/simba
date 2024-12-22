@@ -42,7 +42,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::login',
+                'Action: User.login',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -95,7 +95,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::login_wait',
+                'Action: User.login_wait',
                 'Content-Type: application/json'
             ],
             '',
@@ -173,7 +173,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::login_with_idk',
+                'Action: User.login_with_idk',
                 'Content-Type: text/plain'
             ],
             $idk,
@@ -239,7 +239,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::recover',
+                'Action: User.recover',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
