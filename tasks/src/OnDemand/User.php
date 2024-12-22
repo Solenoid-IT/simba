@@ -29,7 +29,7 @@ class User extends Task
             'https://' . App::$id . '/api',
             'RPC',
             [
-                'Action: user::register',
+                'Action: User.register',
                 'Content-Type: application/json',
 
                 'User-Agent: Simba'
