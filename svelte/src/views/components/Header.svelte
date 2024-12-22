@@ -44,7 +44,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_name',
+                'Action: User.change_name',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -123,7 +123,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_email',
+                'Action: User.change_email',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -194,7 +194,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_birth_data',
+                'Action: User.change_birth_data',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -266,7 +266,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::destroy',
+                'Action: User.destroy',
                 'Content-Type: application/json'
             ],
             '',
@@ -312,7 +312,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::wait_authorization',
+                'Action: User.wait_authorization',
                 'Content-Type: application/json'
             ],
             '',
@@ -380,7 +380,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_password',
+                'Action: User.change_password',
                 'Content-Type: application/json'
             ],
             JSON.stringify( result.fetch() ),
@@ -456,7 +456,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_mfa',
+                'Action: User.change_mfa',
                 'Content-Type: application/json'
             ],
             JSON.stringify( input ),
@@ -536,7 +536,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::change_idk',
+                'Action: User.change_idk',
                 'Content-Type: application/json'
             ],
             JSON.stringify( input ),
@@ -614,7 +614,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::logout',
+                'Action: User.logout',
                 'Content-Type: application/json'
             ],
             '',
@@ -800,7 +800,7 @@
             envs.APP_URL + '/api',
             'RPC',
             [
-                'Action: user::mark_alert_as_read',
+                'Action: User.mark_alert_as_read',
                 'Content-Type: application/json'
             ],
             JSON.stringify
