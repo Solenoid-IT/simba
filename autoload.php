@@ -33,7 +33,18 @@ spl_autoload_register
         {
             case 'Libraries':
                 // (Getting the value)
-                $local_namespace_components = array_splice( $local_namespace_components, count( $local_namespace_components ) - 1, 0, 'src' );
+                #$local_namespace_components = array_splice( $local_namespace_components, count( $local_namespace_components ) - 1, 0, 'src' );
+
+
+
+                // (Getting the value)
+                $class_name = array_pop( $local_namespace_components );
+
+                // (Appending the values)
+                $local_namespace_components[] = 'src';
+                $local_namespace_components[] = $class_name;
+
+
 
                 // (Setting the value)
                 $file_path = __DIR__ . '/lib/src/' . implode( '/', $local_namespace_components ) . '.php';
