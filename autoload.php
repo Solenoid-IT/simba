@@ -89,6 +89,14 @@ spl_autoload_register
 
         // (Including the file)
         include_once( $file_path );
+
+
+
+        if ( $object === 'Stores' )
+        {// Match OK
+            // (Calling the function)
+            call_user_func_array( "$name::preset", [] );
+        }
     }
 )
 ;

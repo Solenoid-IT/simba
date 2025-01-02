@@ -15,7 +15,7 @@ use \Solenoid\HTTP\Server;
 use \Solenoid\HTTP\Response;
 use \Solenoid\HTTP\Status;
 
-use \App\Stores\Sessions\Store as SessionsStore;
+use \App\Stores\Session as SessionStore;
 use \App\Models\local\simba_db\Document as DocumentModel;
 
 
@@ -151,7 +151,7 @@ class Fallback extends Controller
         if ( $user_sid )
         {// (Cookie found)
             // (Getting the value)
-            $session = SessionsStore::fetch()->sessions['user'];
+            $session = SessionStore::get( 'user' );
 
             // (Starting the session)
             $session->start();

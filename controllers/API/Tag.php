@@ -21,7 +21,7 @@ use \App\Models\local\simba_db\User as UserModel;
 use \App\Models\local\simba_db\Tag as TagModel;
 use \App\Models\local\simba_db\Activity as ActivityModel;
 
-use \App\Stores\Sessions\Store as SessionsStore;
+use \App\Stores\Session as SessionStore;
 
 use \App\Services\User as UserService;
 use \App\Services\Client as ClientService;
@@ -50,7 +50,7 @@ class Tag extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -184,7 +184,7 @@ class Tag extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -309,7 +309,7 @@ class Tag extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -416,7 +416,7 @@ class Tag extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 

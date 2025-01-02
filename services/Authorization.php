@@ -22,8 +22,8 @@ use \Solenoid\SMTP\Mail;
 use \Solenoid\SMTP\MailBox;
 use \Solenoid\SMTP\MailBody;
 use \Solenoid\SMTP\Retry;
-use \Solenoid\SMTP\ConnectionStore as SmtpConnectionStore;
 
+use \App\Stores\Connection\SMTP as SmtpConnectionStore;
 use \App\Models\local\simba_db\Authorization as AuthorizationModel;
 use \App\Services\Client as ClientService;
 

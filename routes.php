@@ -20,6 +20,7 @@ Route::handle( 'GET /^\/tests\/(.+)/', Target::define( function ($app) { return 
 Route::handle( 'GET /test/[ action ]/[ input ]', Target::link( Test::class, 'get' )->set_middlewares( [ 'User' ] ) );
 Route::handle( 'GET /test/error', Target::define( function () { throw new \Exception('exception test'); } ) );
 Route::handle( 'GET /test/perf', Target::define( function () {} ) );
+Route::handle( 'GET /test', Target::link( Test::class, 'run' ) );
 
 
 

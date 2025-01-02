@@ -21,7 +21,7 @@ use \Solenoid\SSE\Event as SSEEvent;
 
 use \Solenoid\MySQL\Condition;
 
-use \App\Stores\Sessions\Store as SessionsStore;
+use \App\Stores\Session as SessionStore;
 use \App\Models\local\simba_db\Authorization as AuthorizationModel;
 use \App\Models\local\simba_db\User as UserModel;
 use \App\Services\Authorization as AuthorizationService;
@@ -145,7 +145,7 @@ class Authorization extends Controller
 
 
                     // (Getting the value)
-                    $session = SessionsStore::fetch()->sessions['user'];
+                    $session = SessionStore::get( 'user' );
 
 
 
@@ -238,7 +238,7 @@ class Authorization extends Controller
     public function sse ()
     {
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 

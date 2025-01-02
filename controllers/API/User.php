@@ -34,8 +34,8 @@ use \App\Models\local\simba_db\Document as DocumentModel;
 use \App\Models\local\simba_db\DocumentTagView as DocumentTagViewModel;
 use \App\Models\local\simba_db\Tag as TagModel;
 
-use \App\Stores\Sessions\Store as SessionsStore;
-use \App\Stores\Cookies\Store as CookiesStore;
+use \App\Stores\Session as SessionStore;
+use \App\Stores\Cookie as CookieStore;
 
 use \App\Services\Authorization as AuthorizationService;
 use \App\Services\Client as ClientService;
@@ -389,7 +389,7 @@ class User extends Controller
 
 
             // (Getting the value)
-            $session = SessionsStore::fetch()->sessions['user'];
+            $session = SessionStore::get( 'user' );
 
 
 
@@ -480,7 +480,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -743,7 +743,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -845,7 +845,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -947,7 +947,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -1298,7 +1298,7 @@ class User extends Controller
 
 
             // (Getting the value)
-            $session = SessionsStore::fetch()->sessions['user'];
+            $session = SessionStore::get( 'user' );
 
             if ( !$session->start() )
             {// (Unable to start the session)
@@ -1454,7 +1454,7 @@ class User extends Controller
     public static function login_wait ()
     {
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
         if ( !$session->start() )
         {// (Unable to start the session)
@@ -1505,7 +1505,7 @@ class User extends Controller
 
 
                 // (Removing the cookie)
-                CookiesStore::fetch()->cookies['fwd_route']->set( '', -1 );
+                CookieStore::get( 'fwd_route' )->set( '', -1 );
 
 
 
@@ -1621,7 +1621,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
         if ( !$session->start() )
         {// (Unable to start the session)
@@ -1707,7 +1707,7 @@ class User extends Controller
 
 
         // (Removing the cookie)
-        CookiesStore::fetch()->cookies['fwd_route']->set( '', -1 );
+        CookieStore::get( 'fwd_route' )->set( '', -1 );
 
 
 
@@ -1735,7 +1735,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -1825,7 +1825,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -2017,7 +2017,7 @@ class User extends Controller
 
 
             // (Getting the value)
-            $session = SessionsStore::fetch()->sessions['user'];
+            $session = SessionStore::get( 'user' );
 
 
 
@@ -2231,7 +2231,7 @@ class User extends Controller
     public static function wait_authorization ()
     {
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
         if ( !$session->start() )
         {// (Unable to start the session)
@@ -2317,7 +2317,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -2599,7 +2599,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -2657,7 +2657,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -2899,7 +2899,7 @@ class User extends Controller
 
 
             // (Getting the value)
-            $session = SessionsStore::fetch()->sessions['user'];
+            $session = SessionStore::get( 'user' );
 
 
 
@@ -3006,7 +3006,7 @@ class User extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 

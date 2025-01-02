@@ -4,13 +4,13 @@
 
 use \Solenoid\MySQL\Condition;
 
-use \App\Stores\Sessions\Store as SessionsStore;
+use \App\Stores\Session as SessionStore;
 use \App\Models\User as UserModel;
 
 
 
 // (Getting the value)
-$session = SessionsStore::fetch()->sessions['user'];
+$session = SessionStore::get( 'user' );
 
 // (Getting the value)
 $user = UserModel::fetch()->find( ( new Condition() )->filter( [ [ 'id' => $session->data['user'] ] ] ) );

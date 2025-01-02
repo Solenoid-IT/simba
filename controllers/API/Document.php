@@ -24,7 +24,7 @@ use \App\Models\local\simba_db\DocumentTag as DocumentTagModel;
 use \App\Models\local\simba_db\DocumentTagView as DocumentTagViewModel;
 use \App\Models\local\simba_db\Activity as ActivityModel;
 
-use \App\Stores\Sessions\Store as SessionsStore;
+use \App\Stores\Session as SessionStore;
 
 use \App\Services\User as UserService;
 use \App\Services\Client as ClientService;
@@ -53,7 +53,7 @@ class Document extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -231,7 +231,7 @@ class Document extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -397,7 +397,7 @@ class Document extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -503,7 +503,7 @@ class Document extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -588,7 +588,7 @@ class Document extends Controller
 
 
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 

@@ -14,8 +14,8 @@ use \Solenoid\HTTP\Status;
 use \Solenoid\HTTP\Response;
 use \Solenoid\HTTP\URL;
 
-use \App\Stores\Sessions\Store as SessionsStore;
-use \App\Stores\Cookies\Store as CookiesStore;
+use \App\Stores\Session as SessionStore;
+use \App\Stores\Cookie as CookieStore;
 use \App\Models\local\simba_db\User as UserModel;
 use \App\Models\local\simba_db\Tenant as TenantModel;
 
@@ -27,7 +27,7 @@ class User extends Service
     public static function verify (?int $hierarchy = null)
     {
         // (Getting the value)
-        $session = SessionsStore::fetch()->sessions['user'];
+        $session = SessionStore::get( 'user' );
 
 
 
@@ -76,7 +76,7 @@ class User extends Service
 
 
             // (Setting the cookie)
-            CookiesStore::fetch()->cookies['fwd_route']->set( $_SERVER['HTTP_REFERER'] );
+            CookieStore::get( 'fwd_route' )->set( $_SERVER['HTTP_REFERER'] );
 
 
 

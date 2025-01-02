@@ -7,7 +7,8 @@ namespace App\Models\local\simba_db;
 
 
 use \Solenoid\MySQL\Model;
-use \Solenoid\MySQL\ConnectionStore;
+
+use \App\Stores\Connection\MySQL as ConnectionStore;
 
 
 
