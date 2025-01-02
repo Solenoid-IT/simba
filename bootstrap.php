@@ -83,18 +83,6 @@ View::config( preg_replace( '/^\./', __DIR__, $app_config['views']['views_folder
 
 
 
-/*
-
-foreach ( glob( __DIR__ . '/connections/*.php' ) as $file_path )
-{// Processing each entry
-    // (Including the file)
-    include_once( $file_path );
-}
-
-*/
-
-
-
 // (Creating an Analyzer)
 $performance_analyzer = new Analyzer();
 
