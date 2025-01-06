@@ -71,9 +71,9 @@ Restart: `sudo service {name} restart`
 10. Running the built sql   -> `php x mysql build:run`<br>
 11. Importing the DB models -> `php x mysql extract-models`<br>
 12. Building the app (SPA)  -> `php x build`<br>
-13. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email}`
+13. Creating the user       -> `php x task OnDemand/User create {tenant} {user} {email} {hierarchy-id}`
 <br><br>
-Example -> `php x task OnDemand/User create "simba" "admin" "email@sample.com"`
+Example -> `php x task OnDemand/User create "simba" "admin" "email@sample.com" 1`
 <br><br>
 
 <b>*</b> Server with private IP :<br>

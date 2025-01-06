@@ -21,7 +21,7 @@ class User extends Task
 
 
     # Returns [void]
-    public function create (string $tenant, string $user, string $email)
+    public function create (string $tenant, string $user, string $email, int $hierarchy = 1)
     {
         // (Sending an http request)
         $response = Client::send
@@ -46,7 +46,7 @@ class User extends Task
                     [
                         'name'      => $user,
                         'email'     => $email,
-                        'hierarchy' => 1
+                        'hierarchy' => $hierarchy
                     ]
                 ]
             )
