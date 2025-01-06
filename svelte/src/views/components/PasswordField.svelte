@@ -3,7 +3,10 @@
     // (Setting the values)
     let element = null;
     let value   = '';
-    let visible = false;
+
+
+
+    export let visible = false;
 
 
 
@@ -73,28 +76,6 @@
         'visible':             false
     }
     ;
-
-
-
-    // Returns [void]
-    function showPassword ()
-    {
-        // (Setting the property)
-        element.querySelector('input').type = 'text';
-
-        // (Setting the value)
-        visible = true;
-    }
-
-    // Returns [void]
-    function hidePassword ()
-    {
-        // (Setting the property)
-        element.querySelector('input').type = 'password';
-
-        // (Setting the value)
-        visible = false;
-    }
 
 
 
@@ -209,23 +190,6 @@
 
 
     // Returns [void]
-    function togglePasswordVisibility ()
-    {
-        if ( visible )
-        {// Match OK
-            // (Hiding the password)
-            hidePassword();
-        }
-        else
-        {// Match failed
-            // (Showing the password)
-            showPassword();
-        }
-    }
-
-
-
-    // Returns [void]
     function drawMeter ()
     {
         if ( value.length === 0 )
@@ -267,10 +231,60 @@
             drawMeter();
         }
 
+        
+
+    $:
+        if ( element )
+        {// Value found
+            // (Setting the value)
+            element.api = {};
+
+
+
+            // Returns [void]
+            element.api.setVisible = function (value)
+            {
+                // (Getting the value)
+                visible = value;
+            }
+        }
+    
+    
+    
+    // Returns [void]
+    function onVisibleChange (val)
+    {
+        // (Setting the value)
+        let type = 'password';
+
+
+
+        if ( val )
+        {// Value is true
+            // (Setting the value)
+            type = 'text';
+        }
+        else
+        {// Value is false
+            // (Setting the value)
+            type = 'password';
+        }
+
+
+
+        // (Setting the attribute)
+        element.querySelector( '.input-group .form-input' ).type = type;
+    }
+    
+    
+    
+    $:
+        if ( element ) onVisibleChange( visible );
+
 </script>
 
-<div class="passwordfield">
-    <div class="input-group" bind:this={ element }>
+<div class="passwordfield" bind:this={ element }>
+    <div class="input-group">
         <input type="password" class="form-control input form-input" name="{ name }" placeholder="{ placeholder }" data-required={ required } bind:value={ value } on:input={ drawMeter }>
         <div class="input-group-append">
             { #if generable }
@@ -279,7 +293,7 @@
                 </button>
             { /if }
 
-            <button class="btn btn-secondary p-0" type="button" style="width: 40px;" title="{ visible ? 'hide' : 'show' }" on:click={ togglePasswordVisibility }>
+            <button class="btn btn-secondary p-0" type="button" style="width: 40px;" title="{ visible ? 'hide' : 'show' }" on:click={ () => { visible = !visible; } }>
                 { #if !visible }
                     <i class="fas fa-fw fa-eye"></i>
                 { /if }

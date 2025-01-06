@@ -66,8 +66,15 @@
                 history.pushState( {}, null, '?' + urlParams );
             }
 
+
+
             // (Listening for the event)
             jQuery(element).on('hidden.bs.modal', function () {
+                // (Setting the property)
+                element.querySelectorAll( '.passwordfield' ).forEach( function (el) { el.api.setVisible( false ); } );
+
+
+
                 // (Triggering the event)
                 dispatch('close');
 
