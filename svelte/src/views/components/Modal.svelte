@@ -70,6 +70,11 @@
 
             // (Listening for the event)
             jQuery(element).on('hidden.bs.modal', function () {
+                // (Stopping the immediate propagation)
+                e.stopImmediatePropagation();
+
+
+
                 // (Setting the property)
                 element.querySelectorAll( '.passwordfield' ).forEach( function (el) { el.api.setVisible( false ); } );
 
