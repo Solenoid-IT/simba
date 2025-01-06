@@ -2,10 +2,10 @@
 
     // (Setting the values)
     let element = null;
-    let value   = '';
 
 
 
+    export let value   = '';
     export let visible = false;
 
 
@@ -223,15 +223,6 @@
             // (Setting the value)
             currentMeter.visible = false;
         }
-    
-    $:
-        if ( value )
-        {// Value found
-            // (Drawing the meter)
-            drawMeter();
-        }
-
-        
 
     $:
         if ( element )
@@ -242,10 +233,17 @@
 
 
             // Returns [void]
-            element.api.setVisible = function (value)
+            element.api.setValue = function (val)
             {
                 // (Getting the value)
-                visible = value;
+                value = val;
+            }
+
+            // Returns [void]
+            element.api.setVisible = function (val)
+            {
+                // (Getting the value)
+                visible = val;
             }
         }
     
@@ -276,10 +274,20 @@
         element.querySelector( '.input-group .form-input' ).type = type;
     }
     
-    
-    
     $:
         if ( element ) onVisibleChange( visible );
+
+
+
+    // Returns [void]
+    function onValueChange (val)
+    {
+        // (Drawing the meter)
+        drawMeter();
+    }
+
+    $:
+        if ( element ) onValueChange( value );
 
 </script>
 

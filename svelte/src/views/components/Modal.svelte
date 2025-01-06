@@ -69,14 +69,25 @@
 
 
             // (Listening for the event)
-            jQuery(element).on('hidden.bs.modal', function () {
+            jQuery(element).on('hidden.bs.modal', function (e) {
                 // (Stopping the immediate propagation)
                 e.stopImmediatePropagation();
 
 
 
-                // (Setting the property)
-                element.querySelectorAll( '.passwordfield' ).forEach( function (el) { el.api.setVisible( false ); } );
+                // (Iterating each entry)
+                element.querySelectorAll( '.passwordfield' ).forEach
+                (
+                    function (el)
+                    {
+                        // (Setting the value)
+                        el.api.setValue( '' );
+
+                        // (Setting the property)
+                        el.api.setVisible( false );
+                    }
+                )
+                ;
 
 
 
