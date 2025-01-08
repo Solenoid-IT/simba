@@ -39,7 +39,9 @@
                         'id':         rowElement.getAttribute('data-id'),
 
                         'element':    this,
-                        'rowElement': rowElement
+                        'rowElement': rowElement,
+
+                        'index':      parseInt( rowElement.getAttribute('data-index') )
                     }
                 )
                 ;
