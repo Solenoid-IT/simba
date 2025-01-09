@@ -59,6 +59,14 @@
 
             // (Getting the value)
             $idk = localStorage.getItem( 'idk' );
+
+
+
+            // (Click-Event on the element)
+            jQuery('body').delegate('.copyable', 'click', function () {
+                // (Writing to the clipboard)
+                Solenoid.ClipBoard.write( this.innerText );
+            });
         }
     )
     ;

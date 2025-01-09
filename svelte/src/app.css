@@ -231,3 +231,10 @@ textarea.input
 	display: table;
 	border-radius: 4px;
 }
+
+
+
+.copyable
+{
+	cursor: pointer;
+}
