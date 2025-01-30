@@ -447,6 +447,15 @@ switch ( $argv[1] )
 
 
         // (Setting the cwd)
+        chdir( __DIR__ );
+
+        // (Executing the cmds)
+        system('sudo chmod 644 bootstrap.php');
+        system('sudo chmod 600 x');
+
+
+
+        // (Setting the cwd)
         chdir( __DIR__ . '/svelte' );
 
         // (Executing the cmds)

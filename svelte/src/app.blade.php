@@ -25,6 +25,9 @@
     
         <!-- Solenoid/File -->
         <script src="https://{{ $envs['BE_HOST'] }}/assets/lib/solenoid/solenoid.file.js"></script>
+    
+        <!-- Solenoid/ClipBoard -->
+        <script src="https://{{ $envs['BE_HOST'] }}/assets/lib/solenoid/solenoid.clipboard.js"></script>
 
 
 
