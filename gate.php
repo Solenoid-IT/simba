@@ -30,7 +30,7 @@ class Gate
             break;
 
             case 'http':
-                if ( in_array( 'fw', App::$target->tags ) )
+                if ( in_array( 'fw', App::$route_tags ) )
                 {// (Route contains this tag)
                     // (Creating a Firewall)
                     $firewall = new Firewall

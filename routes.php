@@ -12,23 +12,25 @@ use \App\Controllers\SPA;
 use \App\Controllers\DynamicFile;
 use \App\Controllers\Fallback;
 
+use \App\Middlewares\User as UserMiddleware;
+
 
 
 # debug
-Route::handle( 'GET /test/[ x ]/[ y ]/[ z ]', Target::define( function ($app) { return $app->target->args; } ) );
-Route::handle( 'GET /^\/tests\/(.+)/', Target::define( function ($app) { return $app->target->args; } ) );
-Route::handle( 'GET /test/[ action ]/[ input ]', Target::link( Test::class, 'get' )->set_middlewares( [ 'User' ] ) );
-Route::handle( 'GET /test/error', Target::define( function () { throw new \Exception('exception test'); } ) );
-Route::handle( 'GET /test/perf', Target::define( function () {} ) );
-Route::handle( 'GET /test', Target::link( Test::class, 'run' ) );
+Route::bind( 'GET /test/{ x }/{ y }/{ z }', function (int $x, int $y, int $z) { return "$x-$y-$z"; } );
+Route::bind( new Route( 'GET', '/^\/tests\/(.+)/' ), function (string $match, string $value) { return $value; } );
+Route::bind( 'GET /test/{ action }/{ input }', [ Test::class, 'get' ] )->via( [ UserMiddleware::class ] );
+Route::bind( 'GET /test/error', function () { throw new \Exception('exception test'); } );
+Route::bind( 'GET /test/perf', function () {} );
+Route::bind( 'GET /test', [ Test::class, 'run' ] );
 
 
 
-// (Handing the routes)
-Route::handle( 'RPC /api', Target::link( ApiGateway::class, 'process_action' ) );
-Route::handle( 'GET /admin', Target::define( function () { header( 'Location: /admin/dashboard', true, 303 ); } ) );
-Route::handle( 'GET /admin/authorization/[ token ]/[ action ]', Target::link( Authorization::class, 'get' ) );
-Route::handle( 'GET /history.json', Target::define( function ($app) { return $app->fetch_history(); } ) );
+// (Binding the routes)
+Route::bind( 'RPC /api', [ ApiGateway::class, 'process_action' ] );
+Route::bind( 'GET /admin', function () { header( 'Location: /admin/dashboard', true, 303 ); } );
+Route::bind( 'GET /admin/authorization/[ token ]/[ action ]', [ Authorization::class, 'get' ] );
+Route::bind( 'GET /history.json',  function ($app) { return $app->fetch_history(); } );
 
 
 
@@ -42,8 +44,8 @@ $dynamic_files =
 
 foreach ( $dynamic_files as $id )
 {// Processing each entry
-    // (Handling the route)
-    Route::handle( "GET $id", Target::link( DynamicFile::class, 'get' ) );
+    // (Binding the route)
+    Route::bind( "GET $id", [ DynamicFile::class, 'get' ] );
 }
 
 
@@ -62,19 +64,19 @@ $spa_routes =
 
 foreach ( $spa_routes as $id )
 {// Processing each entry
-    // (Handling the route)
-    Route::handle( "GET $id", Target::link( SPA::class, 'get' ) );
+    // (Binding the route)
+    Route::bind( "GET $id", [ SPA::class, 'get' ] );
 }
 
 
 
-// (Handling the route)
-Route::handle( "RPC /fluid", Target::define( function () { return 'fluid'; } ) );
+// (Binding the route)
+Route::bind( 'RPC /fluid', function () { return 'fluid'; } );
 
 
 
-// (Handling the fallback)
-Route::handle_fallback( Target::link( Fallback::class, 'view' ) );
+// (Defining the fallback)
+Route::fallback( [ Fallback::class, 'view' ] );
 
 
 

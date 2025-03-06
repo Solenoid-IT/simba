@@ -19,7 +19,6 @@ use \Solenoid\Core\Storage;
 use \Solenoid\Core\Logger;
 use \Solenoid\Core\Credentials;
 use \Solenoid\Core\MVC\View;
-use \Solenoid\Core\Routing\Target;
 use \Solenoid\Perf\Analyzer;
 use \Solenoid\HTTP\Request;
 
@@ -89,9 +88,9 @@ $performance_analyzer = new Analyzer();
 
 
 // (Listening for the events)
-Target::on
+App::on
 (
-    'before-gate',
+    'start',
     function () use ($performance_analyzer)
     {
         // (Opening the analyzer)
@@ -99,9 +98,9 @@ Target::on
     }
 )
 ;
-Target::on
+App::on
 (
-    'after-gate',
+    'end',
     function () use ($performance_analyzer, $app)
     {
         // (Closing the analyzer)
@@ -114,7 +113,7 @@ Target::on
     }
 )
 ;
-Target::on
+App::on
 (
     'error',
     function ($data) use ($app)
