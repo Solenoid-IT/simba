@@ -180,7 +180,7 @@ class Document extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Document has been created',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -346,7 +346,7 @@ class Document extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Document has been changed',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -451,7 +451,7 @@ class Document extends Controller
             $record =
             [
                 'user'                 => $user_id,
-                'action'               => $request->headers['Action'],
+                'action'               => Action::fetch(),
                 'description'          => 'Document has been removed',
                 'session'              => $session->id,
                 'ip'                   => $ip,
@@ -664,7 +664,7 @@ class Document extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => "Document has been changed :: Option '" . $input['option'] . "' has been " . ( $input['value'] ? 'enabled' : 'disabled' ),
             'session'              => $session->id,
             'ip'                   => $ip,

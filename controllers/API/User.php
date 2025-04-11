@@ -17,6 +17,8 @@ use \Solenoid\HTTP\Response;
 
 use \Solenoid\HTTP\Client\Client as HttpClient;
 
+use \Solenoid\RPC\Action;
+
 use \Solenoid\MySQL\DateTime;
 
 use \Solenoid\Encryption\KeyPair;
@@ -208,7 +210,7 @@ class User extends Controller
                 $record =
                 [
                     'user'                 => $authorization->data['request']['input']['client']['user'],
-                    'action'               => $request->headers['Action'],
+                    'action'               => Action::fetch(),
                     'description'          => "User has been created",
                     'session'              => $session_id,
                     'ip'                   => $ip,
@@ -233,7 +235,7 @@ class User extends Controller
                 $record =
                 [
                     'user'                 => $user_id,
-                    'action'               => $request->headers['Action'],
+                    'action'               => Action::fetch(),
                     'description'          => "User has been created",
                     'session'              => null,
                     'ip'                   => $_SERVER['REMOTE_ADDR'],
@@ -280,7 +282,7 @@ class User extends Controller
                     'request'           =>
                     [
                         'endpoint_path' => $request->url->path,
-                        'action'        => $request->headers['Action'],
+                        'action'        => Action::fetch(),
                         'input'         => $input
                     ],
 
@@ -309,7 +311,7 @@ class User extends Controller
             (
                 $token,
                 $input['user']['email'],
-                $request->headers['Action'],
+                Action::fetch(),
                 
                 $input['client']['ip'] ?? null,
                 $input['client']['ua'] ?? null
@@ -416,7 +418,7 @@ class User extends Controller
                     'request'           =>
                     [
                         'endpoint_path' => $request->url->path,
-                        'action'        => $request->headers['Action'],
+                        'action'        => Action::fetch(),
                         'input'         =>
                         [
                             'user'      => $user_id
@@ -440,7 +442,7 @@ class User extends Controller
 
 
             // (Sending the authorization)
-            $response = AuthorizationService::send( $token, $user->email, $request->headers['Action'] );
+            $response = AuthorizationService::send( $token, $user->email, Action::fetch() );
             
             if ( $response->status->code !== 200 )
             {// (Unable to send the authorization)
@@ -795,7 +797,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Password has been changed',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -897,7 +899,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'MFA has been ' . ( $input['security.mfa'] ? 'enabled ' : 'disabled' ),
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -1049,7 +1051,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'IDK has been ' . ( $input['security.idk.authentication'] ? 'enabled' : 'disabled' ),
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -1267,7 +1269,7 @@ class User extends Controller
                 $record =
                 [
                     'user'                 => $user->id,
-                    'action'               => $request->headers['Action'],
+                    'action'               => Action::fetch(),
                     'description'          => 'Wrong password',
                     'session'              => null,
                     'ip'                   => $_SERVER['REMOTE_ADDR'],
@@ -1333,7 +1335,7 @@ class User extends Controller
                     'request'                =>
                     [
                         'endpoint_path'      => $request->url->path,
-                        'action'             => $request->headers['Action'],
+                        'action'             => Action::fetch(),
                         'input'              =>
                         [
                             'client'         =>
@@ -1366,7 +1368,7 @@ class User extends Controller
 
 
                 // (Sending the authorization)
-                $response = AuthorizationService::send( $token, $user->email, $request->headers['Action'] );
+                $response = AuthorizationService::send( $token, $user->email, Action::fetch() );
 
                 if ( $response->status->code !== 200 )
                 {// (Unable to send the authorization)
@@ -1418,7 +1420,7 @@ class User extends Controller
                         $record =
                         [
                             'user'                 => $user->id,
-                            'action'               => $request->headers['Action'],
+                            'action'               => Action::fetch(),
                             'description'          => 'Login via BASIC',
                             'session'              => $session->id,
                             'ip'                   => $ip,
@@ -1590,7 +1592,7 @@ class User extends Controller
             $record =
             [
                 'user'                 => $user->id,
-                'action'               => $request->headers['Action'],
+                'action'               => Action::fetch(),
                 'description'          => 'Wrong key',
                 'session'              => null,
                 'ip'                   => $_SERVER['REMOTE_ADDR'],
@@ -1680,7 +1682,7 @@ class User extends Controller
                 $record =
                 [
                     'user'                 => $user->id,
-                    'action'               => $request->headers['Action'],
+                    'action'               => Action::fetch(),
                     'description'          => 'Login via IDK',
                     'session'              => $session->id,
                     'ip'                   => $ip,
@@ -1778,7 +1780,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Logout',
             'session'              => null,
             'ip'                   => $ip,
@@ -1896,7 +1898,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => "Name has been changed to '" . $input['name'] . "'",
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -2057,7 +2059,7 @@ class User extends Controller
                     'request'             =>
                     [
                         'endpoint_path'   => $request->url->path,
-                        'action'          => $request->headers['Action'],
+                        'action'          => Action::fetch(),
                         'input'           =>
                         [
                             'new_value'   => $input['email'],
@@ -2092,7 +2094,7 @@ class User extends Controller
 
 
             // (Sending the authorization)
-            $response = AuthorizationService::send( $token, $user->email, $request->headers['Action'] );
+            $response = AuthorizationService::send( $token, $user->email, Action::fetch() );
             
             if ( $response->status->code !== 200 )
             {// (Unable to send the authorization)
@@ -2196,7 +2198,7 @@ class User extends Controller
             $record =
             [
                 'user'                 => $authorization->data['request']['input']['client']['user'],
-                'action'               => $request->headers['Action'],
+                'action'               => Action::fetch(),
                 'description'          => "Email has been changed to '" . $record['email'] . "'",
                 'session'              => $session_id,
                 'ip'                   => $ip,
@@ -2381,7 +2383,7 @@ class User extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Birth-Data have been changed',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -2480,7 +2482,7 @@ class User extends Controller
             $record =
             [
                 'user'                 => $authorization->data['request']['input']['client']['user'],
-                'action'               => $request->headers['Action'],
+                'action'               => Action::fetch(),
                 'description'          => 'User has been recovered',
                 'session'              => $session_id,
                 'ip'                   => $ip,
@@ -2530,7 +2532,7 @@ class User extends Controller
                 'request'                =>
                 [
                     'endpoint_path'      => $request->url->path,
-                    'action'             => $request->headers['Action'],
+                    'action'             => Action::fetch(),
                     'input'              =>
                     [
                         'client'         =>
@@ -2564,7 +2566,7 @@ class User extends Controller
 
 
             // (Sending the authorization)
-            $response = AuthorizationService::send( $token, $user->email, str_replace( '::', '.', $request->headers['Action'] ) );
+            $response = AuthorizationService::send( $token, $user->email, str_replace( '::', '.', Action::fetch() ) );
 
             if ( $response->status->code !== 200 )
             {// (Unable to send the authorization)
@@ -2853,7 +2855,7 @@ class User extends Controller
                     $record =
                     [
                         'user'                 => $authorization->data['request']['input']['client']['user'],
-                        'action'               => $request->headers['Action'],
+                        'action'               => Action::fetch(),
                         'description'          => "User has been removed",
                         'session'              => $session_id,
                         'ip'                   => $ip,
@@ -2944,7 +2946,7 @@ class User extends Controller
                         'request'               =>
                         [
                             'endpoint_path'     => $request->url->path,
-                            'action'            => $request->headers['Action'],
+                            'action'            => Action::fetch(),
                             'input'             =>
                             [
                                 'user'          => $user->id,
@@ -2972,7 +2974,7 @@ class User extends Controller
 
 
                 // (Sending the authorization)
-                $response = AuthorizationService::send( $response->body['token'], $user->email, $request->headers['Action'] );
+                $response = AuthorizationService::send( $response->body['token'], $user->email, Action::fetch() );
                 
                 if ( $response->status->code !== 200 )
                 {// (Unable to send the authorization)

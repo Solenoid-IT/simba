@@ -133,7 +133,7 @@ class Tag extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Tag has been created',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -258,7 +258,7 @@ class Tag extends Controller
         $record =
         [
             'user'                 => $user_id,
-            'action'               => $request->headers['Action'],
+            'action'               => Action::fetch(),
             'description'          => 'Tag has been changed',
             'session'              => $session->id,
             'ip'                   => $ip,
@@ -364,7 +364,7 @@ class Tag extends Controller
             $record =
             [
                 'user'                 => $user_id,
-                'action'               => $request->headers['Action'],
+                'action'               => Action::fetch(),
                 'description'          => 'Tag has been removed',
                 'session'              => $session->id,
                 'ip'                   => $ip,
